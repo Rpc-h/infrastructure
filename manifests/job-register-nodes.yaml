@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: register-nodes
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: sitilge/sandbox-utils
+        name: register-nodes
+        resources: {}
+        command:
+          - "/bin/sh"
+          - "-c"
+          - "npx ts-node --transpile-only devkit/sandbox/src/register-nodes.ts"
+        env:
+          - name: DP_API_ENDPOINT
+            value: "http://discovery-platform.discovery-platform:3020"
+          - name: HOPRD_API_TOKEN
+            value: "^^awesomeHOPRr3l4y^^"
+          - name: HOPRD_API_ENDPOINT
+            value: "http://pluto.pluto"
+          - name: EXIT_NODE_PUB_KEY_1
+            value: "0x03dbdc347bd4d1d9309f0fd4f1d50c96a617448a5ef22289e4ae48d278f0137e85"
+          - name: EXIT_NODE_PUB_KEY_2
+            value: "0x027be70589dd1479a858e75c082eb99cf646948aa2b82f7c10db65a7f9ef16acef"
+          - name: EXIT_NODE_PUB_KEY_3
+            value: "0x02a2f0d42ae54dfb22cbb3973639b0f1a355f6d64d6255096cca25a48aee90b814"
+          - name: EXIT_NODE_PUB_KEY_4
+            value: "0x0235d05ce7d58dabd3c423f380cd48055fe88efa2f9b396f67d8e919996ca421ce"
+          - name: EXIT_NODE_PUB_KEY_5
+            value: "0x03b1005d2420fb4a41c6078dc01d31037f3c553fa5c506d5b60143847a919adac3"
+      restartPolicy: Never
+status: {}

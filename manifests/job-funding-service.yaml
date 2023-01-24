@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: funding-service
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: sitilge/sandbox-utils
+        name: funding-service
+        resources: {}
+        command:
+          - "/bin/sh"
+          - "-c"
+          - "npx ts-node --transpile-only devkit/sandbox/src/fund-funding-service.ts"
+        env:
+          - name: RPC_PROVIDER
+            value: "http://pluto.pluto:8545"
+          - name: FUNDING_HOPRD_API_ENDPOINT
+            value: "http://pluto.pluto:13301"
+          - name: FUNDING_HOPRD_API_TOKEN
+            value: "^^awesomeHOPRr3l4y^^"
+      restartPolicy: Never
+status: {}

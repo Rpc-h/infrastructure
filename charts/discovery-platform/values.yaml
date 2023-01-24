@@ -1,0 +1,102 @@
+# Default values for discovery-platform.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: sitilge/discovery-platform
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+env:
+    - name: NODE_ENV
+      value: "development"
+    - name: HOPRD_ACCESS_TOKEN
+      value: "^^awesomeHOPRr3l4y^^"
+    - name: FUNDING_SERVICE_URL
+      value: http://funding-service.funding-service:3010
+    - name: DEBUG
+      value: "hopr*,rpch*,-*verbose,-*metrics"
+    - name: SECRET_KEY
+      value: "PleaseChangeMe"
+    - name: WALLET_PRIV_KEY
+      value: "0x97c7a7bdca6d4fdf1549f586971ff8744a70c5fd9b2a6d83d8dd1ca3d894a748"
+    - name: DB_CONNECTION_URL
+      value: "postgresql://postgresql:postgresql@postgresql.postgresql:5432"
+    - name: SMART_CONTRACT_ADDRESS
+      value: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+    - name: PORT
+      value: 3020
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 3020
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

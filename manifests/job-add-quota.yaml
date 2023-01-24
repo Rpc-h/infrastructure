@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: add-quota
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: sitilge/sandbox-utils
+        name: add-quota
+        resources: {}
+        command:
+          - "/bin/sh"
+          - "-c"
+          - "npx ts-node --transpile-only devkit/sandbox/src/add-quota.ts"
+        env:
+          - name: DP_API_ENDPOINT
+            value: "http://discovery-platform.discovery-platform:3020"
+      restartPolicy: Never
+status: {}
