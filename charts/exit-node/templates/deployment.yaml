@@ -28,21 +28,35 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: hopr
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.env }}
+            {{- toYaml .Values.hopr.securityContext | nindent 12 }}
+          image: "{{ .Values.hopr.image.repository }}:{{ .Values.hopr.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.hopr.image.pullPolicy }}
+          {{- with .Values.hopr.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.service.ports }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
+            {{- range . }}
+            - containerPort: {{ .port }}
+            {{- end }}
+          {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.hopr.resources | nindent 12 }}
+
+        - name: rpch
+          securityContext:
+            {{- toYaml .Values.rpch.securityContext | nindent 12 }}
+          image: "{{ .Values.rpch.image.repository }}:{{ .Values.rpch.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.rpch.image.pullPolicy }}
+          {{- with .Values.rpch.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.rpch.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      name: {{ .Values.service.name }}
+      targetPort: {{ .Values.service.name }}
       protocol: TCP
-      name: http
   selector:
     {{- include "funding-service.selectorLabels" . | nindent 4 }}
