@@ -36,3 +36,4 @@ variable "cpu_max" {
   default     = 8
   description = "Maximum amount of CPU cores for auto-provisioned nodes"
 }
+

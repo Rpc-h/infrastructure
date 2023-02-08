@@ -1,17 +1,3 @@
-resource "google_service_account" "main" {
-  account_id   = var.name
-  display_name = "Service Account for ${var.name}"
-}
-
-resource "google_project_iam_binding" "main" {
-  members = [
-    "serviceAccount:${google_service_account.main.email}"
-  ]
-  role    = "roles/container.nodeServiceAccount"
-  #Not inferred from the provider
-  project = var.google_project
-}
-
 resource "google_container_cluster" "main" {
   name = var.name
 
@@ -42,9 +28,9 @@ resource "google_container_cluster" "main" {
     }
 
     auto_provisioning_defaults {
-      disk_type  = "pd-balanced"
-      disk_size  = "50"
-      image_type = "COS_CONTAINERD"
+      disk_type       = "pd-balanced"
+      disk_size       = "50"
+      image_type      = "COS_CONTAINERD"
       service_account = google_service_account.main.email
       oauth_scopes = [
         "https://www.googleapis.com/auth/cloud-platform"

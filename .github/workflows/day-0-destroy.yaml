@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       #TODO - move the creation of the image to a repo
-      image: sitilge/gcp-terraform:latest
+      image: sitilge/gcp-terraform:1
     steps:
       - name: Checkout the code
         id: checkout-code
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       #TODO - move the creation of the image to a repo
-      image: sitilge/gcp-terraform:latest
+      image: sitilge/gcp-terraform:1
     needs: day-0-destroy-plan
     steps:
       - name: Checkout the code
