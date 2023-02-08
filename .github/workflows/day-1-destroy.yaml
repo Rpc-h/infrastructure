@@ -1,9 +1,9 @@
-name: day-1-apply
+name: day-1-destroy
 
 on: workflow_dispatch
 
 jobs:
-  day-1-apply-plan:
+  day-1-destroy-plan:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
@@ -23,20 +23,20 @@ jobs:
           export TF_VAR_google_region="${{ secrets.GOOGLE_REGION }}"
           cd day-1
           terraform init -backend-config="bucket=${{ secrets.GOOGLE_BUCKET }}"
-          terraform plan -out=tfplan-apply
+          terraform plan -out=tfplan-destroy
       - name: Upload Terraform plan file
         id: upload-artifact
         uses: actions/upload-artifact@v3
         with:
-          name: day-1-tfplan-apply
-          path: day-1/tfplan-apply
-  day-1-apply:
+          name: day-1-tfplan-destroy
+          path: day-1/tfplan-destroy
+  day-1-destroy:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
       #TODO - move the creation of the image to a repo
       image: sitilge/gcp-terraform:latest
-    needs: day-1-apply-plan
+    needs: day-1-destroy-plan
     steps:
       - name: Checkout the code
         id: checkout-code
@@ -45,9 +45,9 @@ jobs:
         id: download-artifact
         uses: actions/download-artifact@v3
         with:
-          name: day-1-tfplan-apply
-      - name: Initialize and apply Terraform resources
-        id: initialize-and-apply
+          name: day-1-tfplan-destroy
+      - name: Initialize and destroy Terraform resources
+        id: initialize-and-destroy
         run: |
           source .env
           echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" | base64 -d > /tmp/credentials.json
@@ -56,4 +56,4 @@ jobs:
           export TF_VAR_google_region="${{ secrets.GOOGLE_REGION }}"
           cd day-1
           terraform init -backend-config="bucket=${{ secrets.GOOGLE_BUCKET }}"
-          terraform apply ${{ steps.download-artifact.outputs.download-path }}/tfplan-apply
+          terraform destroy ${{ steps.download-artifact.outputs.download-path }}/tfplan-destroy
