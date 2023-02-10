@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: funding-service
+  namespace: argocd
+spec:
+  project: default
+  source:
+    #TODO - do not hardcode
+    repoURL: https://github.com/Rpc-h/infrastructure
+    targetRevision: main
+    path: charts/funding-service
+    plugin:
+      env:
+        - name: HELM_VALUES
+          value: |
+            image:
+              tag: "ba605bf"
+            env:
+              - name: "BRANCH"
+                value: "MAIN"
+              - name: "DEBUG"
+                value: "hopr\*\,rpch\*\,\-\*verbose\,\-\*metrics"
+              - name: "SECRET_KEY"
+                value: ""
+              - name: "WALLET_PRIV_KEY"
+                value: ""
+              - name: "DB_CONNECTION_URL"
+                value: ""
+              - name: "SMART_CONTRACT_ADDRESS"
+                value: ""
+              - name: "PORT"
+                value: "3020"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
