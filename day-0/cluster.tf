@@ -12,8 +12,9 @@ resource "google_container_cluster" "main" {
 
   network = google_compute_network.main.name
 
+  #TODO - should be enabled later
   cluster_autoscaling {
-    enabled = true
+    enabled = false
 
     resource_limits {
       resource_type = "memory"

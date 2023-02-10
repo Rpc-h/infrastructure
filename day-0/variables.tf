@@ -15,7 +15,7 @@ variable "name" {
 
 variable "memory_min" {
   type        = number
-  default     = 0
+  default     = 8
   description = "Minimum amount of memory for auto-provisioned nodes"
 }
 
@@ -27,7 +27,7 @@ variable "memory_max" {
 
 variable "cpu_min" {
   type        = number
-  default     = 0
+  default     = 4
   description = "Minimum amount of CPU cores for auto-provisioned nodes"
 }
 
