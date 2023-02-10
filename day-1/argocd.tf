@@ -93,7 +93,7 @@ spec:
   project: default
   source:
     repoURL: ${var.argocd_repo_url}
-    targetRevision:  3-configure-gcp-iam-resources-for-day-2-applications
+    targetRevision: main
     path: day-2
     plugin:
       env:
