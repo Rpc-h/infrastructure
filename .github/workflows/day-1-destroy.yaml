@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       #TODO - move the creation of the image to a repo
-      image: sitilge/gcp-terraform:latest
+      image: sitilge/gcp-terraform:1
     steps:
       - name: Checkout the code
         id: checkout-code
@@ -21,6 +21,7 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json
           export TF_VAR_google_project="${{ secrets.GOOGLE_PROJECT }}"
           export TF_VAR_google_region="${{ secrets.GOOGLE_REGION }}"
+          gcloud container clusters get-credentials ${TF_VAR_name} --region ${TF_VAR_google_region} --project ${TF_VAR_google_project}
           cd day-1
           terraform init -backend-config="bucket=${{ secrets.GOOGLE_BUCKET }}"
           terraform plan -out=tfplan-destroy
@@ -35,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       #TODO - move the creation of the image to a repo
-      image: sitilge/gcp-terraform:latest
+      image: sitilge/gcp-terraform:1
     needs: day-1-destroy-plan
     steps:
       - name: Checkout the code
@@ -54,6 +55,7 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json
           export TF_VAR_google_project="${{ secrets.GOOGLE_PROJECT }}"
           export TF_VAR_google_region="${{ secrets.GOOGLE_REGION }}"
+          gcloud container clusters get-credentials ${TF_VAR_name} --region ${TF_VAR_google_region} --project ${TF_VAR_google_project}
           cd day-1
           terraform init -backend-config="bucket=${{ secrets.GOOGLE_BUCKET }}"
           terraform destroy ${{ steps.download-artifact.outputs.download-path }}/tfplan-destroy
