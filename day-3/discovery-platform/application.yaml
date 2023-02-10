@@ -35,8 +35,6 @@ spec:
                 value: "3020"
               - name: "NODE_ENV"
                 value: "development"
-              - name: "DEBUG"
-                value: "hopr\*\,rpch\*\,\-\*verbose\,\-\*metrics"
   destination:
     server: https://kubernetes.default.svc
     namespace: production

@@ -19,8 +19,6 @@ spec:
             env:
               - name: "BRANCH"
                 value: "MAIN"
-              - name: "DEBUG"
-                value: "hopr\*\,rpch\*\,\-\*verbose\,\-\*metrics"
               - name: "SECRET_KEY"
                 value: ""
               - name: "WALLET_PRIV_KEY"
