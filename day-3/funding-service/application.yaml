@@ -15,7 +15,7 @@ spec:
         - name: HELM_VALUES
           value: |
             image:
-              tag: "ba605bf"
+              tag: "a6d518b"
             env:
               - name: "BRANCH"
                 value: "MAIN"
