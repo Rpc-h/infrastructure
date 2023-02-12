@@ -19,7 +19,7 @@ The repository aims to:
 - Utilize industry-standard tools and practices (orchestration, containers, gitops, security)
 - Provide easy-to-use configuration
 
-## Kubernetes cluster
+## Kubernetes cluster setup
 
 ### Preparation
 
@@ -73,15 +73,52 @@ After successful completion of `day-0-apply`, run the `day-1-apply` workflow in 
 
 Run the `day-1-destroy` workflow in Github to destroy `day-1`. After successful completion of `day-1-destroy`, run the `day-0-destroy` workflow in Github to destroy `day-0`. Note that some of the `day-2` cloud provider resources created by your apps, such as load balancers and DNS entries, might interfere with the current destruction of `day-1` and `day-0`. Either make sure everything in `day-2` is uninstalled cleanly, or you might have to do remove the stuck resources manually.
 
+## Kubernetes cluster usage
+
+### Access
+
+1. Ensure your adminstrator has given enough permissions, e.g. your IAM user is assigned with `roles/container.developer` role.
+2. Install Google Cloud CLI as described here: https://cloud.google.com/sdk/docs/install-sdk.
+3. Acquire the cluster related info by running `gcloud container clusters list`.
+4. Follow the instructions on how to access the Kubernetes cluster here: https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl. Run `gcloud auth login` and follow the on-screen instructions and pick the correct Google project. Next run `gcloud  get generate 
+5. Verify you're able to access the cluster and see the nodes by running: `kubectl get nodes`.
+
 ### Applications
+
+These are just some convenience commands for developers that might come in handy. Please see the official upstream docs of the respective applications for more info.
 
 #### Authelia
 
 To generate `authelia` password, run the following command:
 
 ```shell
-export AUTHELIA_PASSWORD="your-password-here"
+export AUTHELIA_PASSWORD="your-password"
 docker run authelia/authelia:latest authelia crypto hash generate argon2 --password ${AUTHELIA_PASSWORD}
+```
+
+#### ArgoCD
+
+To retrieve ArgoCD password run: 
+
+```shell
+kubectl -n argocd get secrets argocd-initial-admin-secret --template {{.data.password}} | base64 -d
+```
+
+#### Sealed Secrets
+
+Make sure you have the `kubeseal` binary installed: https://github.com/bitnami-labs/sealed-secrets. To generate a sealed secret run:
+
+```shell
+export NAMESPACE=your-namespace
+export SECRET_NAME=your-secret
+
+cat << EOF > /tmp/env
+your-key=your-value
+your-another-key=your-another-value
+EOF
+
+kubectl create secret generic -n $NAMESPACE $SECRET_NAME --from-env-file /tmp/env -oyaml --dry-run=client > /tmp/${SECRET_NAME}-secret.yaml
+cat /tmp/${SECRET_NAME}.yaml | kubeseal --controller-namespace sealed-secrets --controller-name sealed-secrets | tee /tmp/${SECRET_NAME}-sealed-secret.yaml
 ```
 
 # TODOs
@@ -98,46 +135,3 @@ docker run authelia/authelia:latest authelia crypto hash generate argon2 --passw
 
 - One more reasons for having day-1: https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#stacking-with-managed-kubernetes-cluster-resources
 - Fix and enable the NAP:
-
-```
-  #TODO - should be enabled later
-  cluster_autoscaling {
-    enabled = false
-
-    resource_limits {
-      resource_type = "memory"
-      minimum       = var.memory_min
-      maximum       = var.memory_max
-    }
-
-    resource_limits {
-      resource_type = "cpu"
-      minimum       = var.cpu_min
-      maximum       = var.cpu_max
-    }
-
-    auto_provisioning_defaults {
-      disk_type       = "pd-balanced"
-      disk_size       = "50"
-      image_type      = "COS_CONTAINERD"
-      service_account = google_service_account.main.email
-      oauth_scopes = [
-        "https://www.googleapis.com/auth/cloud-platform"
-      ]
-
-      management {
-        auto_upgrade = true
-        auto_repair  = true
-      }
-
-      upgrade_settings {
-        strategy  = "SURGE"
-        max_surge = 1
-      }
-
-      shielded_instance_config {
-        enable_integrity_monitoring = true
-      }
-    }
-  }
-```
