@@ -21,10 +21,11 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json
           export TF_VAR_google_project="${{ secrets.GOOGLE_PROJECT }}"
           export TF_VAR_google_region="${{ secrets.GOOGLE_REGION }}"
+          gcloud auth activate-service-account --key-file /tmp/credentials.json
           gcloud container clusters get-credentials ${TF_VAR_name} --region ${TF_VAR_google_region} --project ${TF_VAR_google_project}
           cd day-1
           terraform init -backend-config="bucket=${{ secrets.GOOGLE_BUCKET }}"
-          terraform plan -out=tfplan-destroy
+          terraform plan -destroy -out=tfplan-destroy
       - name: Upload Terraform plan file
         id: upload-artifact
         uses: actions/upload-artifact@v3
@@ -55,7 +56,8 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json
           export TF_VAR_google_project="${{ secrets.GOOGLE_PROJECT }}"
           export TF_VAR_google_region="${{ secrets.GOOGLE_REGION }}"
+          gcloud auth activate-service-account --key-file /tmp/credentials.json
           gcloud container clusters get-credentials ${TF_VAR_name} --region ${TF_VAR_google_region} --project ${TF_VAR_google_project}
           cd day-1
           terraform init -backend-config="bucket=${{ secrets.GOOGLE_BUCKET }}"
-          terraform destroy ${{ steps.download-artifact.outputs.download-path }}/tfplan-destroy
+          terraform apply ${{ steps.download-artifact.outputs.download-path }}/tfplan-destroy
