@@ -18,8 +18,8 @@ spec:
               repository: sitilge/discovery-platform
               tag: a6d518b
             envFrom:
-                type: secret
-                name: discovery-platform
+                - type: secret
+                  name: discovery-platform
             env:
               - name: "FUNDING_SERVICE_URL"
                 value: "http://funding-service.production:3010"
