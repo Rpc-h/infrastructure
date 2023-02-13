@@ -36,7 +36,7 @@ spec:
               className: ""
               port: 9091
               annotations:
-                cert-manager.io/issuer: rpch
+                cert-manager.io/issuer: rpch-tech
               hosts:
                 - host: exit-node-1.rpch.tech
                   paths:
