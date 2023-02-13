@@ -27,7 +27,7 @@ spec:
               enabled: true
               className: ""
               annotations:
-                cert-manager.io/issuer: rpch-tech
+                cert-manager.io/cluster-issuer: rpch-tech
               hosts:
                 - host: discovery.rpch.tech
                   paths:
