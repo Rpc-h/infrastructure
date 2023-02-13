@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: production
+  name: apps-testing
   namespace: argocd
 spec:
   project: default
   source:
     #TODO - do not hardcode
     repoURL: https://github.com/Rpc-h/infrastructure
-    targetRevision: staging
+    targetRevision: testing
     path: day-3
     plugin:
       env:
