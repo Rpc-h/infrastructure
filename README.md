@@ -195,3 +195,7 @@ cat /tmp/${SECRET_NAME}.yaml | kubeseal --controller-namespace sealed-secrets --
 # Notes
 
 - One more reasons for having day-1: https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#stacking-with-managed-kubernetes-cluster-resources
+- did not touch any Terraform config. GCP!!!!! What is that!!!??!?!?!?!?!?!
+- OH MY GOD! https://github.com/Rpc-h/infrastructure/actions/runs/4158375269/jobs/7206744448
+
+![img.png](img.png)

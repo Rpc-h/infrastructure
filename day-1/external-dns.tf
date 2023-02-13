@@ -3,14 +3,15 @@ resource "google_service_account" "external_dns" {
   display_name = "${var.name}-external-dns"
 }
 
-resource "google_project_iam_binding" "external_dns" {
-  members = [
-    "serviceAccount:${google_service_account.external_dns.email}"
-  ]
-  role = "roles/dns.admin"
-  #Not inferred from the provider
-  project = var.google_project
-}
+#TODO - see main.tf
+#resource "google_project_iam_binding" "external_dns" {
+#  members = [
+#    "serviceAccount:${google_service_account.external_dns.email}"
+#  ]
+#  role = "roles/dns.admin"
+#  #Not inferred from the provider
+#  project = var.google_project
+#}
 
 resource "google_service_account_iam_binding" "external_dns" {
   members = [

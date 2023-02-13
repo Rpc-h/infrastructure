@@ -3,14 +3,15 @@ resource "google_service_account" "cert_manager" {
   display_name = "${var.name}-cert-manager"
 }
 
-resource "google_project_iam_binding" "cert_manager" {
-  members = [
-    "serviceAccount:${google_service_account.cert_manager.email}"
-  ]
-  role = "roles/dns.admin"
-  #Not inferred from the provider
-  project = var.google_project
-}
+#TODO - see main.tf
+#resource "google_project_iam_binding" "cert_manager" {
+#  members = [
+#    "serviceAccount:${google_service_account.cert_manager.email}"
+#  ]
+#  role = "roles/dns.admin"
+#  #Not inferred from the provider
+#  project = var.google_project
+#}
 
 resource "google_service_account_iam_binding" "cert_manager" {
   members = [
