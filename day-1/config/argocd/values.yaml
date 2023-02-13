@@ -9,7 +9,7 @@ server:
     tls:
       - secretName: argocd-cert
   extraArgs:
-    - --insecure #This is required otherwise I am getting redirect loops as ArgoCD is trying to redirect http request (terminated at CloudFlare) to https
+    - --insecure #This is required otherwise I am getting redirect loops
 dex:
   enabled: false
 repoServer:
@@ -17,7 +17,7 @@ repoServer:
     - name: argocd-sugar
       command: ["/var/run/argocd/argocd-cmp-server"]
       args: ["--loglevel=debug"]
-      image: sitilge/argocd-sugar:ab7d5745
+      image: sitilge/argocd-sugar:f40ad519
       securityContext:
         runAsNonRoot: true
         runAsUser: 999

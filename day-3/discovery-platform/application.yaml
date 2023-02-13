@@ -10,31 +10,33 @@ spec:
     repoURL: https://github.com/Rpc-h/infrastructure
     targetRevision: main
     path: charts/discovery-platform
-    helm:
-      values: |
-        image:
-          repository: sitilge/discovery-platform
-          tag: a6d518b
-        envFrom:
-          - type: secret
-            name: discovery-platform-production
-        env:
-          - name: "FUNDING_SERVICE_URL"
-            value: "http://funding-service.production:3010"
-        ingress:
-          enabled: true
-          className: ""
-          annotations:
-            cert-manager.io/cluster-issuer: rpch-tech
-          hosts:
-            - host: discovery.rpch.tech
-              paths:
-                - path: /
-                  pathType: ImplementationSpecific
-          tls:
-            - secretName: discovery.rpch.tech-tls
+    plugin:
+      env:
+        - name: HELM_VALUES
+          value: |
+            image:
+              repository: sitilge/discovery-platform
+              tag: a6d518b
+            envFrom:
+              - type: secret
+                name: discovery-platform-production
+            env:
+              - name: "FUNDING_SERVICE_URL"
+                value: "http://funding-service.production:3010"
+            ingress:
+              enabled: true
+              className: ""
+              annotations:
+                cert-manager.io/cluster-issuer: rpch-tech
               hosts:
-                - discovery.rpch.tech
+                - host: discovery.rpch.tech
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+              tls:
+                - secretName: discovery.rpch.tech-tls
+                  hosts:
+                    - discovery.rpch.tech
   destination:
     server: https://kubernetes.default.svc
     namespace: production
