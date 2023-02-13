@@ -134,4 +134,3 @@ cat /tmp/${SECRET_NAME}.yaml | kubeseal --controller-namespace sealed-secrets --
 # Notes
 
 - One more reasons for having day-1: https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#stacking-with-managed-kubernetes-cluster-resources
-- Fix and enable the NAP:
