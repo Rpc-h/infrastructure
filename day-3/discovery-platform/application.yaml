@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: discovery-platform
+  name: discovery-platform-production
   namespace: argocd
 spec:
   project: default
