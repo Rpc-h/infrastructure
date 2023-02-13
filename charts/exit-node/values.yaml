@@ -70,7 +70,7 @@ autoscaling:
 
 ingress:
   enabled: false
-  port: "9091"
+  port: ""
   className: ""
   annotations: {}
   # kubernetes.io/ingress.class: nginx
