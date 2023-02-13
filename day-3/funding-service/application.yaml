@@ -8,7 +8,7 @@ spec:
   source:
     #TODO - do not hardcode
     repoURL: https://github.com/Rpc-h/infrastructure
-    targetRevision: main
+    targetRevision: testing
     path: charts/funding-service
     plugin:
       env:
@@ -31,7 +31,7 @@ spec:
                 value: "3020"
   destination:
     server: https://kubernetes.default.svc
-    namespace: production
+    namespace: testing
   syncPolicy:
     automated:
       prune: true
