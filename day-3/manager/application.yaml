@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: funding-service-production
+  name: manager-production
   namespace: argocd
 spec:
   project: default
@@ -9,20 +9,20 @@ spec:
     #TODO - do not hardcode
     repoURL: https://github.com/Rpc-h/infrastructure
     targetRevision: main
-    path: charts/funding-service
+    path: charts/manager
     plugin:
       env:
         - name: HELM_VALUES
           value: |
             image:
-              repository: sitilge/funding-service
-              tag: a6d518b
+              repository: sitilge/manager
+              tag: 29d16fd
             envFrom:
               - type: secret
                 name: discovery-platform-production
             env:
               - name: "PORT"
-                value: "3020"
+                value: "3030"
   destination:
     server: https://kubernetes.default.svc
     namespace: production

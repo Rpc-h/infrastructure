@@ -37,6 +37,19 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- if .Values.rpch.envFrom }}
+          envFrom:
+          {{- range $value := .Values.rpch.envFrom }}
+            {{- if (eq .type "configmap") }}
+            - configMapRef:
+                name: {{ .name }}
+            {{- end }}
+            {{- if (eq .type "secret") }}
+            - secretRef:
+                name: {{ .name }}
+            {{- end }}
+          {{- end }}
+          {{- end }}
           {{- with .Values.service.ports }}
           ports:
             {{- range . }}
@@ -51,6 +64,19 @@ spec:
             {{- toYaml .Values.rpch.securityContext | nindent 12 }}
           image: "{{ .Values.rpch.image.repository }}:{{ .Values.rpch.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.rpch.image.pullPolicy }}
+          {{- if .Values.rpch.envFrom }}
+          envFrom:
+          {{- range $value := .Values.rpch.envFrom }}
+            {{- if (eq .type "configmap") }}
+            - configMapRef:
+                name: {{ .name }}
+            {{- end }}
+            {{- if (eq .type "secret") }}
+            - secretRef:
+                name: {{ .name }}
+            {{- end }}
+          {{- end }}
+          {{- end }}
           {{- with .Values.rpch.env }}
           env:
             {{- toYaml . | nindent 12 }}

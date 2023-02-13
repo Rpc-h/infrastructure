@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: exit-node-1-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    #TODO - do not hardcode
+    repoURL: https://github.com/Rpc-h/infrastructure
+    targetRevision: main
+    path: charts/exit-node
+    plugin:
+      env:
+        - name: HELM_VALUES
+          value: |
+            rpch:
+              image:
+                repository: sitilge/exit-node
+                tag: d33791b
+              envFrom:
+                - type: secret
+                  name: exit-node-1-production
+              env:
+                - name: "FUNDING_SERVICE_URL"
+                  value: "http://funding-service.production:3010"
+            hopr:
+              image:
+                repository: gcr.io/hoprassociation/hoprd
+                tag: v1.90.69@sha256:edb35bec4c10c5fec5f39f55bdce103200f5936df0fd31a12b82f8ae254602a1
+              envFrom:
+                - type: secret
+                  name: exit-node-1-production
+            ingress:
+              enabled: true
+              className: ""
+              port: "9091"
+              annotations:
+                cert-manager.io/issuer: rpch
+              hosts:
+                - host: exit-node-1.rpch.tech
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+              tls:
+                - secretName: exit-node-1.rpch.tech-tls
+                  hosts:
+                    - exit-node-1.rpch.tech
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true

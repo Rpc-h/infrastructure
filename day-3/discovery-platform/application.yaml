@@ -23,10 +23,20 @@ spec:
             env:
               - name: "FUNDING_SERVICE_URL"
                 value: "http://funding-service.production:3010"
-              - name: "PORT"
-                value: "3020"
-              - name: "NODE_ENV"
-                value: "development"
+            ingress:
+              enabled: true
+              className: ""
+              annotations:
+                cert-manager.io/issuer: rpch
+              hosts:
+                - host: discovery.rpch.tech
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+              tls:
+                - secretName: discovery.rpch.tech-tls
+                  hosts:
+                    - discovery.rpch.tech
   destination:
     server: https://kubernetes.default.svc
     namespace: production
