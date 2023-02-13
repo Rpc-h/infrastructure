@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: discovery-platform-production
+  name: discovery-platform
   namespace: argocd
 spec:
   project: default
   source:
     #TODO - do not hardcode
     repoURL: https://github.com/Rpc-h/infrastructure
-    targetRevision: main
+    targetRevision: staging
     path: charts/discovery-platform
     plugin:
       env:
@@ -39,7 +39,7 @@ spec:
                     - discovery.rpch.tech
   destination:
     server: https://kubernetes.default.svc
-    namespace: production
+    namespace: staging
   syncPolicy:
     automated:
       prune: true
