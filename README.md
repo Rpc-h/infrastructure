@@ -77,11 +77,72 @@ Run the `day-1-destroy` workflow in Github to destroy `day-1`. After successful 
 
 ### Access
 
-1. Ensure your adminstrator has given enough permissions, e.g. your IAM user is assigned with `roles/container.developer` role.
+1. Ensure your administrator has given enough permissions, e.g. your IAM user is assigned with `roles/container.developer` role.
 2. Install Google Cloud CLI as described here: https://cloud.google.com/sdk/docs/install-sdk.
 3. Acquire the cluster related info by running `gcloud container clusters list`.
 4. Follow the instructions on how to access the Kubernetes cluster here: https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl. Run `gcloud auth login` and follow the on-screen instructions and pick the correct Google project. Next run `gcloud  get generate 
 5. Verify you're able to access the cluster and see the nodes by running: `kubectl get nodes`.
+
+### Workflow
+
+From this point on, developers are mostly interested in applications under `day-3` directory. This repo, among others, holds 3 important branches:
+- `main`
+- `staging`
+- `testing`
+
+In the current setup, there is 1:1 mapping between the branches and the Kubernetes namespaces that should be respected:
+- `main` -> `production`
+- `staging` -> `staging`
+- `testing` -> `testing`
+
+For example, let's take a look at `day-3/discovery-platform/application.yaml` manifest:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: discovery-platform-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Rpc-h/infrastructure
+    targetRevision: main
+    path: charts/discovery-platform
+    plugin:
+      env:
+        - name: HELM_VALUES
+          value: |
+            image:
+              repository: sitilge/discovery-platform
+              tag: a6d518b
+            envFrom:
+              - type: secret
+                name: discovery-platform-production
+            env:
+              - name: "FUNDING_SERVICE_URL"
+                value: "http://funding-service.production:3010"
+              - name: "PORT"
+                value: "3020"
+              - name: "NODE_ENV"
+                value: "development"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
+```
+
+From `spec.source.targetRevision=main` and `spec.destination.namespace=production` you can deduct that `main` branch of the given `spec.source.repoURL` is mapping to a namespace called `production` in the destination cluster. From developer's point of view, the flow is, for example:
+1. I create a feature branch and edit some of the `env` values above
+2. I crate a MR to `main` branch
+3. Upon successful merge, the new `env` values will be automatically synced & available in the `discovery-platform` deployment in `production` namespace
 
 ### Applications
 
