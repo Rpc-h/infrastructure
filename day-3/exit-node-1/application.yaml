@@ -34,7 +34,7 @@ spec:
             ingress:
               enabled: true
               className: ""
-              port: "9091"
+              port: 9091
               annotations:
                 cert-manager.io/issuer: rpch
               hosts:
