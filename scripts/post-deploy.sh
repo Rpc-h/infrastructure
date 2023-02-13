@@ -83,7 +83,8 @@ declare HOPR_ENVIRONMENT="${3}"
 declare NATIVE_FUND_AMOUNT="${4}"
 declare HOPR_FUND_AMOUNT="${5}"
 declare CHANNEL_FUND_AMOUNT="${6}"
-declare DISCOVERY_PLATFORM_ENDPOINT="${rpch_release}.discovery-platform.rpch.tech"
+declare DISCOVERY_PLATFORM_ENDPOINT="$rpch_release.discovery-platform.rpch.tech"
+declare NFT_ID="16478" # we don't need to change this until next staking season
 # set hoprd endpoints
 declare HOPRD_API_ENDPOINT_1="$rpch_release.hoprd-1.rpch.tech"
 declare HOPRD_API_ENDPOINT_2="$rpch_release.hoprd-2.rpch.tech"
@@ -157,7 +158,7 @@ scurl -X POST "http://$MANAGER_ENDPOINT/register-hoprd-nodes" \
           "privateKey": "'$DEPLOYER_PRIV_KEY'",
           "provider": "'$provider'",
           "nftAddress": "'$nftAddress'",
-          "nftId": "16478",
+          "nftId": "'$NFT_ID'",
           "stakeAddress": "'$stakeAddress'",
           "registryAddress": "'$registryAddress'",
           "peerIds": "'$hoprd_hopr_addresses'"
