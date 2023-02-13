@@ -199,3 +199,6 @@ cat /tmp/${SECRET_NAME}.yaml | kubeseal --controller-namespace sealed-secrets --
 - OH MY GOD! https://github.com/Rpc-h/infrastructure/actions/runs/4158375269/jobs/7206744448
 
 ![img.png](img.png)
+
+-    #TODO - I think there is a problem with argocd-sugar plugin as it might be re-using helm values file from another apps.
+     #TODO - check that
