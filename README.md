@@ -122,10 +122,20 @@ spec:
             env:
               - name: "FUNDING_SERVICE_URL"
                 value: "http://funding-service.production:3010"
-              - name: "PORT"
-                value: "3020"
-              - name: "NODE_ENV"
-                value: "development"
+            ingress:
+              enabled: true
+              className: ""
+              annotations:
+                cert-manager.io/cluster-issuer: rpch-tech
+              hosts:
+                - host: discovery.rpch.tech
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+              tls:
+                - secretName: discovery.rpch.tech-tls
+                  hosts:
+                    - discovery.rpch.tech
   destination:
     server: https://kubernetes.default.svc
     namespace: production
@@ -195,10 +205,4 @@ cat /tmp/${SECRET_NAME}.yaml | kubeseal --controller-namespace sealed-secrets --
 # Notes
 
 - One more reasons for having day-1: https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#stacking-with-managed-kubernetes-cluster-resources
-- did not touch any Terraform config. GCP!!!!! What is that!!!??!?!?!?!?!?!
-- OH MY GOD! https://github.com/Rpc-h/infrastructure/actions/runs/4158375269/jobs/7206744448
-
-![img.png](img.png)
-
--    #TODO - I think there is a problem with argocd-sugar plugin as it might be re-using helm values file from another apps.
-     #TODO - check that
+- The issue with GCP deleting IAM binding for project is related to this: "Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the project are preserved." as described here: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding . See solution in `day-1/main.tf` 
