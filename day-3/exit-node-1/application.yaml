@@ -20,17 +20,20 @@ spec:
                 tag: d33791b
               envFrom:
                 - type: secret
-                  name: exit-node-1-production
+                  name: exit-node-1-staging
               env:
                 - name: "FUNDING_SERVICE_URL"
-                  value: "http://funding-service.production:3010"
+                  value: "http://funding-service.staging:3010"
             hopr:
               image:
                 repository: gcr.io/hoprassociation/hoprd
                 tag: v1.90.69@sha256:edb35bec4c10c5fec5f39f55bdce103200f5936df0fd31a12b82f8ae254602a1
               envFrom:
                 - type: secret
-                  name: exit-node-1-production
+                  name: exit-node-1-staging
+              env:
+                - name: "FUNDING_SERVICE_URL"
+                  value: "http://funding-service.staging:3010"
             ingress:
               enabled: true
               className: ""
@@ -38,14 +41,14 @@ spec:
               annotations:
                 cert-manager.io/cluster-issuer: rpch-tech
               hosts:
-                - host: exit-node-1.rpch.tech
+                - host: staging.exit-node-1.rpch.tech
                   paths:
                     - path: /
                       pathType: ImplementationSpecific
               tls:
-                - secretName: exit-node-1.rpch.tech-tls
+                - secretName: staging.exit-node-1.rpch.tech-tls
                   hosts:
-                    - exit-node-1.rpch.tech
+                    - staging.exit-node-1.rpch.tech
   destination:
     server: https://kubernetes.default.svc
     namespace: staging

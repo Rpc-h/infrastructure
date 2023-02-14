@@ -19,7 +19,7 @@ spec:
               tag: a6d518b
             envFrom:
               - type: secret
-                name: discovery-platform-production
+                name: funding-service-staging
             env:
               - name: "PORT"
                 value: "3020"
