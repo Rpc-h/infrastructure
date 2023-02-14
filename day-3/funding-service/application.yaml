@@ -16,7 +16,7 @@ spec:
           value: |
             image:
               repository: sitilge/funding-service
-              tag: a6d518b
+              tag: fad4bde
             envFrom:
               - type: secret
                 name: funding-service-staging

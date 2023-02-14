@@ -17,7 +17,7 @@ spec:
             rpch:
               image:
                 repository: sitilge/exit-node
-                tag: d33791b
+                tag: fad4bde
               envFrom:
                 - type: secret
                   name: exit-node-1-staging

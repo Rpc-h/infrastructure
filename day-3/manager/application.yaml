@@ -16,7 +16,7 @@ spec:
           value: |
             image:
               repository: sitilge/manager
-              tag: 29d16fd
+              tag: 13d38b3
             envFrom:
               - type: secret
                 name: manager-staging
