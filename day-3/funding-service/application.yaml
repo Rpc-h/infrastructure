@@ -22,7 +22,7 @@ spec:
                 name: funding-service-staging
             env:
               - name: "PORT"
-                value: "3020"
+                value: "3010"
   destination:
     server: https://kubernetes.default.svc
     namespace: staging

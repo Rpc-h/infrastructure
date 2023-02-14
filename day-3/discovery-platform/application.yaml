@@ -21,6 +21,8 @@ spec:
               - type: secret
                 name: discovery-platform-staging
             env:
+              - name: "SKIP_CHECK_COMMITMENT"
+                value: "true"
               - name: "FUNDING_SERVICE_URL"
                 value: "http://funding-service.staging:3010"
             ingress:
