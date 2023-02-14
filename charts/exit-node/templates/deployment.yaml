@@ -33,9 +33,12 @@ spec:
             {{- toYaml .Values.hopr.securityContext | nindent 12 }}
           image: "{{ .Values.hopr.image.repository }}:{{ .Values.hopr.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.hopr.image.pullPolicy }}
-          {{- with .Values.hopr.env }}
+          {{- if .Values.env }}
           env:
-            {{- toYaml . | nindent 12 }}
+          {{- range $value, $key := .Values.env }}
+            - name: {{ $key.name }}
+              value: {{ $key.value | quote }}
+          {{- end }}
           {{- end }}
           {{- if .Values.rpch.envFrom }}
           envFrom:

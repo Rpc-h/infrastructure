@@ -23,6 +23,8 @@ spec:
             env:
               - name: "PORT"
                 value: "3010"
+              - name: "DEBUG"
+                value: "rpch*,-*metrics"
   destination:
     server: https://kubernetes.default.svc
     namespace: staging

@@ -15,10 +15,6 @@ spec:
 #      env:
 #        - name: HELM_VALUES
 #          value: |
-
-#      - name: "DEBUG"
-#        value: "rpch\*\,\-\*metrics"
-
     helm:
       values: |      
         image:
@@ -32,6 +28,9 @@ spec:
             value: "true"
           - name: "FUNDING_SERVICE_URL"
             value: "http://funding-service.staging:3010"
+          - name: "DEBUG"
+            value: "rpch*,-*metrics"
+
         ingress:
           enabled: true
           className: ""
