@@ -24,6 +24,8 @@ spec:
               env:
                 - name: "HOPRD_API_ENDPOINT"
                   value: "http://localhost:3001"
+                - name: "DEBUG"
+                  value: "rpch*,-*metrics"
             hopr:
               image:
                 repository: gcr.io/hoprassociation/hoprd
@@ -32,6 +34,8 @@ spec:
                 - type: secret
                   name: exit-node-1-staging
               env:
+                - name: "DEBUG"
+                  value: "hopr*"
                 - name: "HOPRD_ENVIRONMENT"
                   value: "monte_rosa"
                 - name: "HOPRD_ADMIN"
