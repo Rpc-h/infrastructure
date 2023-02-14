@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: exit-node-1-production
+  name: exit-node-1-staging
   namespace: argocd
 spec:
   project: default
   source:
     #TODO - do not hardcode
     repoURL: https://github.com/Rpc-h/infrastructure
-    targetRevision: main
+    targetRevision: staging
     path: charts/exit-node
     plugin:
       env:
@@ -48,7 +48,7 @@ spec:
                     - exit-node-1.rpch.tech
   destination:
     server: https://kubernetes.default.svc
-    namespace: production
+    namespace: staging
   syncPolicy:
     automated:
       prune: true
