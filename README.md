@@ -91,9 +91,9 @@ From this point on, developers are mostly interested in applications under `day-
 - `testing`
 
 In the current setup, there is 1:1 mapping between the branches and the Kubernetes namespaces that should be respected:
-- `main` -> `production`
-- `staging` -> `staging`
-- `testing` -> `testing`
+- `main` -> `production` -> you should use `rpch.tech`
+- `staging` -> `staging` -> you should use `staging.rpch.tech`
+- `testing` -> `testing` -> you should use `testing.rpch.tech`
 
 For example, let's take a look at `day-3/discovery-platform/application.yaml` manifest:
 
