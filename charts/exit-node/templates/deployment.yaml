@@ -70,6 +70,7 @@ spec:
           ports:
             {{- range . }}
             - containerPort: {{ .port }}
+              protocol: {{ .protocol }}
             {{- end }}
           {{- end }}
           resources:
