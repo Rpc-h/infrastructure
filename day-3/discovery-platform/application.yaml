@@ -16,7 +16,7 @@ spec:
           value: |
             image:
               repository: sitilge/discovery-platform
-              tag: fad4bde
+              tag: "4970778"
             envFrom:
               - type: secret
                 name: discovery-platform-staging
