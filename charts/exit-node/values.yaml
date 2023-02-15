@@ -7,10 +7,10 @@ service:
     - port: 8080
       name: "8080"
     - port: 9091
-      name: "9091"
+      name: "9091-TCP"
       protocol: TCP
     - port: 9091
-      name: "9091"
+      name: "9091-UDP"
       protocol: UDP
 
 hopr:
