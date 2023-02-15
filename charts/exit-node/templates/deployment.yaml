@@ -28,16 +28,16 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: hopr-identity
+        - name: {{ include "exit-node.fullname" . }}-hopr-identity
           persistentVolumeClaim:
             claimName: {{ include "exit-node.fullname" . }}-hopr-identity
-        - name: hopr-data
+        - name: {{ include "exit-node.fullname" . }}-hopr-data
           persistentVolumeClaim:
             claimName: {{ include "exit-node.fullname" . }}-hopr-data
-        - name: rpch-identity
+        - name: {{ include "exit-node.fullname" . }}-rpch-identity
           persistentVolumeClaim:
             claimName: {{ include "exit-node.fullname" . }}-rpch-identity
-        - name: rpch-data
+        - name: {{ include "exit-node.fullname" . }}-rpch-data
           persistentVolumeClaim:
             claimName: {{ include "exit-node.fullname" . }}-rpch-data
       containers:
