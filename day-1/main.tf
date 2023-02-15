@@ -34,7 +34,7 @@ resource "kubernetes_storage_class" "main" {
   storage_provisioner = "kubernetes.io/gce-pd"
   reclaim_policy      = "Retain"
   parameters = {
-    type = "pd-standard"
+    type = "pd-ssd"
     replication-type = "regional-pd"
   }
 
