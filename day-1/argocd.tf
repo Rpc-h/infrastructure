@@ -2,6 +2,10 @@ resource "kubernetes_namespace" "argocd" {
   metadata {
     name = "argocd"
   }
+
+  depends_on = [
+    kubernetes_storage_class.main
+  ]
 }
 
 resource "random_password" "main" {
