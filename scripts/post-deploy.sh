@@ -32,6 +32,10 @@ function scurl() {
     curl --silent --show-error --fail "$@" || exit 1
 }
 
+function strip() {
+    echo $1 | tr -d ' ' | tr -d '\n'
+}
+
 # prints indentation
 function msg() {
   echo >&2 -e "${1-}"
@@ -40,7 +44,9 @@ function msg() {
 # prints usage
 function usage() {
   msg
-  msg "Usage: $0 <rpch_release> <hopr_release> <hopr_environment> <native_fund_amount> <hopr_fund_amount> <channel_fund_amount>"
+  msg "Usage: $0 <rpch_release> <hopr_release> <hopr_environment>"
+  msg "<hoprd_native_fund_amount> <hoprd_hopr_fund_amount> <channel_fund_amount>"
+  msg "<fs_native_fund_amount> <fs_hopr_fund_amount>"
   msg
   msg "Required environment variables"
   msg "------------------------------"
@@ -80,18 +86,21 @@ test -z "${EXIT_NODE_PUB_KEY_1:-}" && { msg "Missing EXIT_NODE_PUB_KEY_1"; usage
 declare RPCH_RELEASE="${1}"
 declare HOPR_RELEASE="${2}"
 declare HOPR_ENVIRONMENT="${3}"
-declare NATIVE_FUND_AMOUNT="${4}"
-declare HOPR_FUND_AMOUNT="${5}"
+declare HOPRD_NATIVE_FUND_AMOUNT="${4}"
+declare HOPRD_HOPR_FUND_AMOUNT="${5}"
 declare CHANNEL_FUND_AMOUNT="${6}"
-declare DISCOVERY_PLATFORM_ENDPOINT="$rpch_release.discovery.rpch.tech"
-declare NFT_ID="16478" # we don't need to change this until next staking season
+declare FS_NATIVE_FUND_AMOUNT="${7}"
+declare FS_HOPR_FUND_AMOUNT="${8}"
+declare DISCOVERY_PLATFORM_ENDPOINT="http://discovery-platform-$RPCH_RELEASE.$RPCH_RELEASE"
+declare NFT_ID="26" # we don't need to change this until next staking season
+# TODO: fix, this is actually NFT type index
 # set hoprd endpoints
-declare HOPRD_API_ENDPOINT_1="http://exit-node-1-staging.staging"
-declare HOPRD_API_ENDPOINT_1_EXT="http://$rpch_release.exit-node-1.rpch.tech"
-#declare HOPRD_API_ENDPOINT_2="$rpch_release.exit-node-2.rpch.tech"
-#declare HOPRD_API_ENDPOINT_3="$rpch_release.exit-node-3.rpch.tech"
-#declare HOPRD_API_ENDPOINT_4="$rpch_release.exit-node-4.rpch.tech"
-#declare HOPRD_API_ENDPOINT_5="$rpch_release.exit-node-5.rpch.tech"
+declare HOPRD_API_ENDPOINT_1="http://exit-node-1-$RPCH_RELEASE.$RPCH_RELEASE"
+declare HOPRD_API_ENDPOINT_1_EXT="http://$RPCH_RELEASE.exit-node-1.rpch.tech"
+#declare HOPRD_API_ENDPOINT_2="$RPCH_RELEASE.exit-node-2.rpch.tech"
+#declare HOPRD_API_ENDPOINT_3="$RPCH_RELEASE.exit-node-3.rpch.tech"
+#declare HOPRD_API_ENDPOINT_4="$RPCH_RELEASE.exit-node-4.rpch.tech"
+#declare HOPRD_API_ENDPOINT_5="$RPCH_RELEASE.exit-node-5.rpch.tech"
 
 # pull HOPR config and return the ENV details
 echo "Pulling ENV details"
@@ -114,53 +123,56 @@ function getEnvDetails() {
 getEnvDetails
 
 # pull HOPRd nodes addresses
-#echo "Pullng HOPRd nodes addresses"
-#hoprdAddresses=$(
-#    scurl -sX POST "http://$MANAGER_ENDPOINT/get-hoprds-addresses" \
+# echo "Pullng HOPRd nodes addresses"
+# get_hoprds_addresses_json='{
+#     "hoprdApiEndpoints": [
+#         "'$HOPRD_API_ENDPOINT_1'"
+#     ],
+#     "hoprdApiTokens": [
+#         "'$HOPRD_API_TOKEN'"
+#     ]
+# }'
+# hoprdAddresses=$(
+#    scurl -sX POST "$MANAGER_ENDPOINT/get-hoprds-addresses" \
 #        -H "Content-Type: application/json" \
-#        -d '{
-#            "hoprdApiEndpoints": [
-#                "'$HOPRD_API_ENDPOINT_1'"
-#            ],
-#            "hoprdApiTokens": [
-#                "'$HOPRD_API_TOKEN'"
-#            ]
-#        }'
-#)
-#echo "Received hoprdAddresses: $hoprdAddresses"
+#        -d "$get_hoprds_addresses_json"
+# )
+# echo "Received hoprdAddresses: $hoprdAddresses"
 
-hoprdAddresses='{"native": ["0x5D9839444BDA885A3a31C27aa7df9A566F04968f"],"hopr": ["16Uiu2HAm8CxNy3iS4gr3hQHSswX1RV6f8ky5Mf7UnnejiqRAGJDs"]}'
+hoprdAddresses='{"native": ["0xdcDF4bca0d5343d7023c37fBd5929168e897Ba6A"],"hopr": ["16Uiu2HAkwoCmf3miEp8Jt3mUCATzzXejp8LgRto6hnfYE2PDXVyg"]}'
 
 declare hoprd_native_addresses=$(jq -r .native <<< $hoprdAddresses)
 declare hoprd_hopr_addresses=$(jq -r .hopr <<< $hoprdAddresses)
 
 echo "Funding HOPRd nodes"
-scurl -X POST "http://$MANAGER_ENDPOINT/fund-hoprd-nodes" \
+fund_hoprd_nodes_json='{
+    "privateKey": "'$DEPLOYER_PRIV_KEY'",
+    "provider": "'$provider'",
+    "hoprTokenAddress": "'$hoprAddress'",
+    "nativeAmount": "'$HOPRD_NATIVE_FUND_AMOUNT'",
+    "hoprAmount": "'$HOPRD_HOPR_FUND_AMOUNT'",
+    "recipients": '$hoprd_native_addresses'
+}'
+scurl -X POST "$MANAGER_ENDPOINT/fund-hoprd-nodes" \
     -H "Content-Type: application/json" \
-    -d '{
-          "privateKey": "'$DEPLOYER_PRIV_KEY'",
-          "provider": "'$provider'",
-          "hoprTokenAddress": "'$hoprAddress'",
-          "nativeAmount": "'$NATIVE_FUND_AMOUNT'",
-          "hoprAmount": "'$HOPR_FUND_AMOUNT'",
-          "recipients": '$hoprd_native_addresses'
-    }'
+    -d "$fund_hoprd_nodes_json"
 
 echo "Registering HOPRd nodes"
-scurl -X POST "http://$MANAGER_ENDPOINT/register-hoprd-nodes" \
+register_hoprd_nodes_json='{
+    "privateKey": "'$DEPLOYER_PRIV_KEY'",
+    "provider": "'$provider'",
+    "nftAddress": "'$nftAddress'",
+    "nftId": '$NFT_ID',
+    "stakeAddress": "'$stakeAddress'",
+    "registryAddress": "'$registryAddress'",
+    "peerIds": '$hoprd_hopr_addresses'
+}'
+scurl -X POST "$MANAGER_ENDPOINT/register-hoprd-nodes" \
     -H "Content-Type: application/json" \
-    -d '{
-          "privateKey": "'$DEPLOYER_PRIV_KEY'",
-          "provider": "'$provider'",
-          "nftAddress": "'$nftAddress'",
-          "nftId": "'$NFT_ID'",
-          "stakeAddress": "'$stakeAddress'",
-          "registryAddress": "'$registryAddress'",
-          "peerIds": "'$hoprd_hopr_addresses'"
-    }'
+    -d "$register_hoprd_nodes_json"
 
 #echo "Open channels for HOPRd nodes"
-#scurl -X POST "http://$MANAGER_ENDPOINT/open-channels" \
+#scurl -X POST "$MANAGER_ENDPOINT/open-channels" \
 #    -H "Content-Type: application/json" \
 #    -d '{
 #          "hoprAmount": "'$CHANNEL_FUND_AMOUNT'",
@@ -181,32 +193,36 @@ scurl -X POST "http://$MANAGER_ENDPOINT/register-hoprd-nodes" \
 #    }'
 
 echo "Fund the funding service"
-scurl -X POST "http://$MANAGER_ENDPOINT/fund-via-wallet" \
+fund_funding_service_json='{
+    "privateKey": "'$DEPLOYER_PRIV_KEY'",
+    "provider": "'$provider'",
+    "hoprTokenAddress": "'$hoprAddress'",
+    "nativeAmount": "'$FS_NATIVE_FUND_AMOUNT'",
+    "hoprAmount": "'$FS_HOPR_FUND_AMOUNT'",
+    "recipient": "'$FUNDING_SERVICE_WALLET'"
+}'
+scurl -X POST "$MANAGER_ENDPOINT/fund-via-wallet" \
     -H "Content-Type: application/json" \
-    -d '{
-          "privateKey": "'$DEPLOYER_PRIV_KEY'",
-          "provider": "'$provider'",
-          "hoprTokenAddress": "'$hoprAddress'",
-          "nativeAmount": "'$NATIVE_FUND_AMOUNT'",
-          "hoprAmount": "'$HOPR_FUND_AMOUNT'",
-          "recipient": "'$FUNDING_SERVICE_WALLET'"
-    }'
+    -d "$fund_funding_service_json"
 
 echo "Registering nodes to discovery-platform"
-scurl -X POST "http://$MANAGER_ENDPOINT/register-exit-nodes" \
+register_exit_nodes_json='{
+    "discoveryPlatformEndpoint": "'$DISCOVERY_PLATFORM_ENDPOINT'",
+    "hoprdApiEndpoints": [
+        "'$HOPRD_API_ENDPOINT_1'"
+    ],
+    "hoprdApiEndpointsExt": [
+        "'$HOPRD_API_ENDPOINT_1_EXT'"
+    ],
+    "hoprdApiTokens": [
+        "'$HOPRD_API_TOKEN'"
+    ],
+    "exitNodePubKeys": [
+        "'$EXIT_NODE_PUB_KEY_1'"
+    ]
+}'
+scurl -X POST "$MANAGER_ENDPOINT/register-exit-nodes" \
     -H "Content-Type: application/json" \
-    -d '{
-        "discoveryPlatformEndpoint": "'$DISCOVERY_PLATFORM_ENDPOINT'",
-        "hoprdApiEndpoints": [
-            "'$HOPRD_API_ENDPOINT_1'"
-        ],
-        "hoprdApiEndpointsExt": [
-            "'$HOPRD_API_ENDPOINT_1_EXT'"
-        ],
-        "hoprdApiTokens": [
-            "'$HOPRD_API_TOKEN'"
-        ],
-        "exitNodePubKeys": [
-            "'$EXIT_NODE_PUB_KEY_1'"
-        ]
-    }'
+    -d "$register_exit_nodes_json"
+
+echo "Done"
