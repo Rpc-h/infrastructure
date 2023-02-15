@@ -42,7 +42,7 @@ spec:
                 - name: "HOPRD_API_HOST"
                   value: "0.0.0.0"
                 - name: "HOPRD_IDENTITY"
-                  value: "/mnt/identity"
+                  value: "/mnt/identity/.hopr-identity"
                 - name: "HOPRD_DATA"
                   value: "/mnt/data"
             
