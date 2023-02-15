@@ -35,6 +35,7 @@ resource "kubernetes_storage_class" "main" {
   reclaim_policy      = "Retain"
   parameters = {
     type = "pd-standard"
+    replication-type = "regional-pd"
   }
 
   volume_binding_mode = "WaitForFirstConsumer"
