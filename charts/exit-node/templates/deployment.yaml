@@ -63,6 +63,8 @@ spec:
             {{- toYaml .Values.hopr.resources | nindent 12 }}
 
         - name: rpch
+          ports:
+            - containerPort: 3001
           securityContext:
             {{- toYaml .Values.rpch.securityContext | nindent 12 }}
           image: "{{ .Values.rpch.image.repository }}:{{ .Values.rpch.image.tag | default .Chart.AppVersion }}"
