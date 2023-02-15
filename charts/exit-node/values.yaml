@@ -8,6 +8,10 @@ service:
       name: "8080"
     - port: 9091
       name: "9091"
+      protocol: TCP
+    - port: 9091
+      name: "9091"
+      protocol: UDP
 
 hopr:
   image:
@@ -20,7 +24,8 @@ hopr:
 
   resources: {}
 
-  securityContext: {}
+  securityContext:
+    {}
     # capabilities:
     #   drop:
     #   - ALL
@@ -39,7 +44,8 @@ rpch:
 
   resources: {}
 
-  securityContext: {}
+  securityContext:
+    {}
     # capabilities:
     #   drop:
     #   - ALL
@@ -58,7 +64,8 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
 autoscaling:
