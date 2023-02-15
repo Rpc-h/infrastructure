@@ -37,6 +37,8 @@ resource "kubernetes_storage_class" "main" {
     type = "pd-standard"
   }
 
+  volume_binding_mode = "WaitForFirstConsumer"
+
   allow_volume_expansion = true
 
   mount_options = [
