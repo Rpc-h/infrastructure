@@ -42,16 +42,6 @@ resource "kubernetes_storage_class" "main" {
 
   allow_volume_expansion = true
 
-  mount_options = [
-    "file_mode=0700",
-    "dir_mode=0777",
-    "mfsymlinks",
-    "uid=1000",
-    "gid=1000",
-    "nobrl",
-    "cache=none"
-  ]
-
   depends_on = [
     kubernetes_annotations.main
   ]
