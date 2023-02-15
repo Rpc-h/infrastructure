@@ -58,8 +58,10 @@ spec:
                   value: "http://localhost:3001"
                 - name: "DEBUG"
                   value: "rpch*,-*metrics"
-                - name: "RPCH_IDENTITY_DIR"
-                  value: "/mnt/identity"
+                - name: "RPCH_IDENTITY_DIR" #TODO - this is a bug and should be removed in the future
+                  value: "/mnt/identity/.rpch-identity" #TODO - this is a bug and should be removed in the future
+                - name: "RPCH_IDENTITY"
+                  value: "/mnt/identity/.rpch-identity"
                 - name: "RPCH_DATA_DIR"
                   value: "/mnt/data"
               securityContext:
