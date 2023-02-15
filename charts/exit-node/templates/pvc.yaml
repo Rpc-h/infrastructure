@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "exit-node.labels" . | nindent 4 }}
 spec:
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
