@@ -1,0 +1,96 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: exit-node-3-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    #TODO - do not hardcode
+    repoURL: https://github.com/Rpc-h/infrastructure
+    targetRevision: staging
+    path: charts/exit-node
+    plugin:
+      env:
+        - name: HELM_VALUES
+          value: |
+            hopr:
+              image:
+                repository: gcr.io/hoprassociation/hoprd
+                tag: 1.92.8@sha256:822ead8398b00c2564e755f742dea218b92e9dacdc17b2eda2b6b9899631d3e3
+              envFrom:
+                - type: secret
+                  name: exit-node-3-staging
+              persistence:
+                identity:
+                  mountPath: /mnt/identity
+                  size: 10Gi
+                data:
+                  mountPath: /mnt/data
+                  size: 10Gi
+              env:
+                - name: "DEBUG"
+                  value: "hopr*"
+                - name: "HOPRD_ENVIRONMENT"
+                  value: "monte_rosa"
+                - name: "HOPRD_ADMIN"
+                  value: "true"
+                - name: "HOPRD_API"
+                  value: "true"
+                - name: "HOPRD_INIT"
+                  value: "true"
+                - name: "HOPRD_API_HOST"
+                  value: "0.0.0.0"
+                - name: "HOPRD_IDENTITY"
+                  value: "/mnt/identity/.hopr-identity"
+                - name: "HOPRD_DATA"
+                  value: "/mnt/data"
+            
+            rpch:
+              image:
+                repository: sitilge/exit-node
+                tag: fad4bde
+              envFrom:
+                - type: secret
+                  name: exit-node-3-staging
+              env:
+                - name: "HOPRD_API_ENDPOINT"
+                  value: "http://localhost:3001"
+                - name: "DEBUG"
+                  value: "rpch*,-*metrics"
+                - name: "RPCH_IDENTITY_DIR" #TODO - this is a bug and should be removed in the future
+                  value: "/mnt/identity/.rpch-identity" #TODO - this is a bug and should be removed in the future
+                - name: "RPCH_IDENTITY"
+                  value: "/mnt/identity/.rpch-identity"
+                - name: "RPCH_DATA_DIR"
+                  value: "/mnt/data"
+              securityContext:
+                runAsUser: 0 #TODO - this is bad
+                runAsGroup: 0 #TODO - this is bad
+            
+            ingress:
+              enabled: true
+              className: ""
+              port: 3001
+              annotations:
+                cert-manager.io/cluster-issuer: rpch-tech
+              hosts:
+                - host: staging.exit-node-3.rpch.tech
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+              tls:
+                - secretName: staging.exit-node-3.rpch.tech-tls
+                  hosts:
+                    - staging.exit-node-3.rpch.tech
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
