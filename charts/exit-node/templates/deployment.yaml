@@ -27,6 +27,19 @@ spec:
       serviceAccountName: {{ include "exit-node.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: hopr-identity
+          persistentVolumeClaim:
+            claimName: {{ include "exit-node.fullname" . }}-hopr-identity
+        - name: hopr-data
+          persistentVolumeClaim:
+            claimName: {{ include "exit-node.fullname" . }}-hopr-data
+        - name: rpch-identity
+          persistentVolumeClaim:
+            claimName: {{ include "exit-node.fullname" . }}-rpch-identity
+        - name: rpch-data
+          persistentVolumeClaim:
+            claimName: {{ include "exit-node.fullname" . }}-rpch-data
       containers:
         - name: hopr
           securityContext:
@@ -61,6 +74,11 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.hopr.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: {{ .Values.hopr.persistence.identity }}
+              name: {{ include "exit-node.fullname" . }}-hopr-identity
+            - mountPath: {{ .Values.hopr.persistence.data }}
+              name: {{ include "exit-node.fullname" . }}-hopr-data
 
         - name: rpch
           securityContext:
@@ -86,6 +104,12 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.rpch.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: {{ .Values.rpch.persistence.identity }}
+              name: {{ include "exit-node.fullname" . }}-rpch-identity
+            - mountPath: {{ .Values.rpch.persistence.data }}
+              name: {{ include "exit-node.fullname" . }}-rpch-data
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

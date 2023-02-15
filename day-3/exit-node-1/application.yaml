@@ -14,18 +14,6 @@ spec:
       env:
         - name: HELM_VALUES
           value: |
-            rpch:
-              image:
-                repository: sitilge/exit-node
-                tag: fad4bde
-              envFrom:
-                - type: secret
-                  name: exit-node-1-staging
-              env:
-                - name: "HOPRD_API_ENDPOINT"
-                  value: "http://localhost:3001"
-                - name: "DEBUG"
-                  value: "rpch*,-*metrics"
             hopr:
               image:
                 repository: gcr.io/hoprassociation/hoprd
@@ -33,6 +21,13 @@ spec:
               envFrom:
                 - type: secret
                   name: exit-node-1-staging
+              persistence:
+                identity:
+                  mountPath: /mnt/identity
+                  size: 10Gi
+                data:
+                  mountPath: /mnt/data
+                  size: 10Gi
               env:
                 - name: "DEBUG"
                   value: "hopr*"
@@ -46,6 +41,28 @@ spec:
                   value: "true"
                 - name: "HOPRD_API_HOST"
                   value: "0.0.0.0"
+                - name: "HOPRD_IDENTITY"
+                  value: "/mnt/identity"
+                - name: "HOPRD_DATA"
+                  value: "/mnt/data"
+            
+            rpch:
+              image:
+                repository: sitilge/exit-node
+                tag: fad4bde
+              envFrom:
+                - type: secret
+                  name: exit-node-1-staging
+              env:
+                - name: "HOPRD_API_ENDPOINT"
+                  value: "http://localhost:3001"
+                - name: "DEBUG"
+                  value: "rpch*,-*metrics"
+                - name: "RPCH_IDENTITY_DIR"
+                  value: "/mnt/identity"
+                - name: "RPCH_DATA_DIR"
+                  value: "/mnt/data"
+            
             ingress:
               enabled: true
               className: ""
