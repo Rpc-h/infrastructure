@@ -44,6 +44,8 @@ spec:
                   value: "true"
                 - name: "HOPRD_INIT"
                   value: "true"
+                - name: "HOPRD_API_HOST"
+                  value: "0.0.0.0"
             ingress:
               enabled: true
               className: ""
