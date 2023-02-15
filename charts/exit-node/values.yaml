@@ -31,8 +31,10 @@ hopr:
   persistence:
     identity:
       path: "/mnt/identity"
+      size: "10Gi"
     data:
       path: "/mnt/data"
+      size: "10Gi"
 
 rpch:
   image:
@@ -56,8 +58,10 @@ rpch:
   persistence:
     identity:
       path: "/mnt/identity"
+      size: "10Gi"
     data:
       path: "/mnt/data"
+      size: "10Gi"
 
 imagePullSecrets: []
 nameOverride: ""
