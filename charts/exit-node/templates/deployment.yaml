@@ -75,9 +75,9 @@ spec:
           resources:
             {{- toYaml .Values.hopr.resources | nindent 12 }}
           volumeMounts:
-            - mountPath: {{ .Values.hopr.persistence.identity }}
+            - mountPath: {{ .Values.hopr.persistence.identity.path }}
               name: {{ include "exit-node.fullname" . }}-hopr-identity
-            - mountPath: {{ .Values.hopr.persistence.data }}
+            - mountPath: {{ .Values.hopr.persistence.data.path }}
               name: {{ include "exit-node.fullname" . }}-hopr-data
 
         - name: rpch
@@ -105,9 +105,9 @@ spec:
           resources:
             {{- toYaml .Values.rpch.resources | nindent 12 }}
           volumeMounts:
-            - mountPath: {{ .Values.rpch.persistence.identity }}
+            - mountPath: {{ .Values.rpch.persistence.identity.path }}
               name: {{ include "exit-node.fullname" . }}-rpch-identity
-            - mountPath: {{ .Values.rpch.persistence.data }}
+            - mountPath: {{ .Values.rpch.persistence.data.path }}
               name: {{ include "exit-node.fullname" . }}-rpch-data
 
       {{- with .Values.nodeSelector }}
