@@ -71,7 +71,6 @@ spec:
             ingress:
               enabled: true
               className: ""
-              port: 3001
               annotations:
                 cert-manager.io/cluster-issuer: rpch-tech
               hosts:
@@ -79,10 +78,17 @@ spec:
                   paths:
                     - path: /
                       pathType: ImplementationSpecific
+                      port: 3001
+                - host: staging.p2p.exit-node-2.rpch.tech
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+                      port: 9091
               tls:
                 - secretName: staging.exit-node-2.rpch.tech-tls
                   hosts:
                     - staging.exit-node-2.rpch.tech
+                    - staging.p2p.exit-node-2.rpch.tech
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
