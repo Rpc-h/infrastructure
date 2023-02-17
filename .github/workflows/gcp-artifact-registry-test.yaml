@@ -26,7 +26,7 @@ jobs:
           credentials_json: '$(echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d)'
           token_format: 'access_token'
         env:
-          abcd: $(echo $RANDOM | base64 -d)
+          abcd: `$(echo $RANDOM | base64 -d)`
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v2
