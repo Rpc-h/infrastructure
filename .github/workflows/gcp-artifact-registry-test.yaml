@@ -17,27 +17,19 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
 
-#      - id: 'auth'
-#        name: 'Authenticate to Google Cloud'
-#        uses: 'google-github-actions/auth@v1'
-#        with:
-#          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
-
-#      - name: Calculate SHORT_SHA
-#        shell: sh
-#        run: |
-#          echo "SHORT_SHA=`${{ secrets.GOOGLE_REGION }} | base64 -d`"
-#          echo "SHORT_SHA=`${{ secrets.GOOGLE_REGION }} | base64 -d`" >> $GITHUB_ENV
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+          token_format: 'access_token'
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v2
         with:
           registry: ${{ secrets.GOOGLE_REGION }}-docker.pkg.dev
-#          username: _json_key
-          username: $(echo ${{ secrets.GOOGLE_REGION }} | base64)
-          password: GOOGLE_APPLICATION_CREDENTIALS
-#          env:
-#            GOOGLE_APPLICATION_CREDENTIALS: $(echo ${{ secrets.GOOGLE_REGION }} | base64 -d)
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
 
       # This example runs "docker login" directly to Artifact Registry.
       - run: |-
