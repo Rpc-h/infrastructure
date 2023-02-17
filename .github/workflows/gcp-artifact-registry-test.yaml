@@ -17,18 +17,18 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+#      - id: 'auth'
+#        name: 'Authenticate to Google Cloud'
+#        uses: 'google-github-actions/auth@v1'
+#        with:
+#          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v2
         with:
           registry: ${{ secrets.GOOGLE_REGION }}-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+          username: _json_key
+          password: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
       # This example runs "docker login" directly to Artifact Registry.
       - run: |-
