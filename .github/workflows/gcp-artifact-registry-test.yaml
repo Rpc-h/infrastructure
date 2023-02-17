@@ -15,15 +15,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
 
-      - name: Decode Google credentials
-        shell: sh
-        run: echo "GOOGLE_CREDENTIALS=$(echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d)" >> $GITHUB_ENV
+#      - name: Decode Google credentials
+#        shell: sh
+#        run: echo "GOOGLE_CREDENTIALS=$(echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d)" >> $GITHUB_ENV
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
-          credentials_json: '${{ env.GOOGLE_CREDENTIALS }}'
+          credentials_json: '$(echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d)'
           token_format: 'access_token'
 
       - name: Login to Artifact Registry
