@@ -24,9 +24,9 @@ The repository aims to:
 ### Preparation
 
 Make sure you have:
-- A Github account with escalated permissions to set secrets
-- A GCP service account with escalated permissions to create resources
-- A GCP storage bucket for storing Terraform state
+- A Github account with escalated permissions to set secrets.
+- A GCP service account with escalated permissions to create resources. Note: please remove the escalated permissions when done with pipeline steps `day-0` and `day-1` for security reasons.
+- A GCP storage bucket for storing Terraform state.
 - GCP APIs enabled:
   - `compute.googleapis.com`
   - `container.googleapis.com`
@@ -41,10 +41,10 @@ ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa -q -N "" -C rpch-anaconda
 
 We try to keep as little secret variables as possible by design. For the sake of convenience, define the following secrets in your Github secrets section:
 
-- `GOOGLE_APPLICATION_CREDENTIALS` = GCP service account credentials
-- `GOOGLE_PROJECT` = GCP project ID
-- `GOOGLE_REGION` = GCP project default region
-- `GOOGLE_BUCKET` = GCP bucket for storing Terraform state
+- `GOOGLE_APPLICATION_CREDENTIALS` = GCP service account credentials.
+- `GOOGLE_PROJECT` = GCP project ID.
+- `GOOGLE_REGION` = GCP project default region.
+- `GOOGLE_BUCKET` = GCP bucket for storing Terraform state.
 - `ARGOCD_CREDENTIALS_KEY` = Base64-encoded ArgoCD credentials private key from the previously generated keypair.
 
 ### Non-secret variables
@@ -61,12 +61,12 @@ export TF_VAR_argocd_credentials_url="git@github.com:Rpc-h"
 ### Installation
 
 Run the `day-0-apply` workflow in Github to install `day-0` resources such as:
-- GKE Kubernetes cluster and node pools
-- IAM service accounts and bindings for the Kubernetes cluster
-- VPC networks and firewall rules for the Kubernetes cluster
+- GKE Kubernetes cluster and node pools.
+- IAM service accounts and bindings for the Kubernetes cluster.
+- VPC networks and firewall rules for the Kubernetes cluster.
 
 After successful completion of `day-0-apply`, run the `day-1-apply` workflow in Github to install `day-1` resources such as:
-- ArgoCD helm chart and the initial ArgoCD app-of-apps
+- ArgoCD helm chart and the initial ArgoCD app-of-apps.
 - IAM service accounts and bindings for `day-2` applications, e.g. `cert-manager`, `external-dns`, etc.
 
 ### Uninstallation
@@ -140,9 +140,9 @@ spec:
 ```
 
 From `spec.source.targetRevision=main` and `spec.destination.namespace=production` you can deduct that `main` branch of the given `spec.source.repoURL` is mapping to a namespace called `production` in the destination cluster. From developer's point of view, the flow is, for example:
-1. I create a feature branch and edit some of the `env` values above
-2. I crate a MR to `main` branch
-3. Upon successful merge, the new `env` values will be automatically synced & available in the `discovery-platform` deployment in `production` namespace
+1. I create a feature branch and edit some of the `env` values above.
+2. I crate a MR to `main` branch.
+3. Upon successful merge, the new `env` values will be automatically synced & available in the `discovery-platform` deployment in `production` namespace.
 
 ### Applications
 
