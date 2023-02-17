@@ -41,7 +41,7 @@ ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa -q -N "" -C rpch-anaconda
 
 We try to keep as little secret variables as possible by design. For the sake of convenience, define the following secrets in your Github secrets section:
 
-- `GOOGLE_APPLICATION_CREDENTIALS` = GCP service account credentials.
+- `GOOGLE_APPLICATION_CREDENTIALS` = GCP service account credentials. #TODO - rename to GOOGLE_CREDENTIALS
 - `GOOGLE_PROJECT` = GCP project ID.
 - `GOOGLE_REGION` = GCP project default region.
 - `GOOGLE_BUCKET` = GCP bucket for storing Terraform state.
