@@ -28,7 +28,9 @@ jobs:
         with:
           registry: ${{ secrets.GOOGLE_REGION }}-docker.pkg.dev
           username: _json_key
-          password: $(echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d)
+          password: GOOGLE_APPLICATION_CREDENTIALS
+          env:
+            GOOGLE_APPLICATION_CREDENTIALS: $(echo ${{ secrets.GOOGLE_REGION }} | base64 -d)
 
       # This example runs "docker login" directly to Artifact Registry.
       - run: |-
