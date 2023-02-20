@@ -16,7 +16,11 @@ spec:
           value: |
             image:
               repository: sitilge/manager
+<<<<<<< Updated upstream
               tag: 725db18
+=======
+              tag: 506ac68
+>>>>>>> Stashed changes
             envFrom:
               - type: secret
                 name: manager-staging

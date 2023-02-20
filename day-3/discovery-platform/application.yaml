@@ -16,7 +16,11 @@ spec:
           value: |
             image:
               repository: sitilge/discovery-platform
+<<<<<<< Updated upstream
               tag: "4970778"
+=======
+              tag: 506ac68
+>>>>>>> Stashed changes
             envFrom:
               - type: secret
                 name: discovery-platform-staging

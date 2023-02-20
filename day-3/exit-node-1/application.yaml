@@ -16,8 +16,13 @@ spec:
           value: |
             hopr:
               image:
+<<<<<<< Updated upstream
                 repository: gcr.io/hoprassociation/hoprd
                 tag: 1.92.8@sha256:822ead8398b00c2564e755f742dea218b92e9dacdc17b2eda2b6b9899631d3e3
+=======
+                repository: sitilge/exit-node
+                tag: 506ac68
+>>>>>>> Stashed changes
               envFrom:
                 - type: secret
                   name: exit-node-1-staging
