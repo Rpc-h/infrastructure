@@ -45,11 +45,11 @@ spec:
                   value: "/mnt/identity/.hopr-identity"
                 - name: "HOPRD_DATA"
                   value: "/mnt/data"
-            
+
             rpch:
               image:
                 repository: sitilge/exit-node
-                tag: fad4bde
+                tag: 506ac68
               envFrom:
                 - type: secret
                   name: exit-node-2-staging
@@ -67,7 +67,7 @@ spec:
               securityContext:
                 runAsUser: 0 #TODO - this is bad
                 runAsGroup: 0 #TODO - this is bad
-            
+
             ingress:
               enabled: true
               className: ""

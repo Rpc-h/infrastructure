@@ -16,11 +16,7 @@ spec:
           value: |
             image:
               repository: sitilge/funding-service
-<<<<<<< Updated upstream
-              tag: fad4bde
-=======
               tag: 506ac68
->>>>>>> Stashed changes
             envFrom:
               - type: secret
                 name: funding-service-staging
