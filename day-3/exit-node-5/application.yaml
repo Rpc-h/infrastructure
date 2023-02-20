@@ -49,7 +49,7 @@ spec:
             rpch:
               image:
                 repository: sitilge/exit-node
-                tag: 506ac68
+                tag: a1f7ae7
               envFrom:
                 - type: secret
                   name: exit-node-5-staging
