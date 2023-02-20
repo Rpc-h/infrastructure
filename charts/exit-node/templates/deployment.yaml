@@ -7,6 +7,9 @@ metadata:
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    #TODO - recreate strategy so the old pods get deleted first to release the PVs.
+    type: "Recreate"
   {{- end }}
   selector:
     matchLabels:
