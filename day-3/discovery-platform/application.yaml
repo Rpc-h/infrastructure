@@ -15,8 +15,8 @@ spec:
         - name: HELM_VALUES
           value: |
             image:
-              repository: sitilge/discovery-platform
-              tag: 506ac68
+              repository: europe-west6-docker.pkg.dev/rpch-375921/rpch/discovery-platform
+              tag: af91d42
             envFrom:
               - type: secret
                 name: discovery-platform-staging

@@ -48,8 +48,8 @@ spec:
 
             rpch:
               image:
-                repository: sitilge/exit-node
-                tag: 506ac68
+                repository: europe-west6-docker.pkg.dev/rpch-375921/rpch/exit-node
+                tag: af91d42
               envFrom:
                 - type: secret
                   name: exit-node-3-staging

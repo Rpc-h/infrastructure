@@ -15,8 +15,8 @@ spec:
         - name: HELM_VALUES
           value: |
             image:
-              repository: sitilge/funding-service
-              tag: 506ac68
+              repository: europe-west6-docker.pkg.dev/rpch-375921/rpch/funding-service
+              tag: af91d42
             envFrom:
               - type: secret
                 name: funding-service-staging
