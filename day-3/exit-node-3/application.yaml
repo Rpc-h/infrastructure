@@ -49,7 +49,7 @@ spec:
             rpch:
               image:
                 repository: europe-west6-docker.pkg.dev/rpch-375921/rpch/exit-node
-                tag: af91d42
+                tag: 1144dfa
               envFrom:
                 - type: secret
                   name: exit-node-3-staging

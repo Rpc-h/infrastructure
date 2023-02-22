@@ -16,7 +16,7 @@ spec:
           value: |
             image:
               repository: europe-west6-docker.pkg.dev/rpch-375921/rpch/discovery-platform
-              tag: af91d42
+              tag: 1144dfa
             envFrom:
               - type: secret
                 name: discovery-platform-staging
