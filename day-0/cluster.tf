@@ -12,11 +12,6 @@ resource "google_container_cluster" "main" {
 
   network = google_compute_network.main.name
 
-  scheduling {
-    //TODO - move to SPOT when apps are ready
-    provisioning_model = "STANDARD"
-  }
-
   cluster_autoscaling {
     enabled = true
 
@@ -98,7 +93,7 @@ resource "google_container_node_pool" "main" {
   node_count = 1 #Node count per zone
 
   node_config {
-    preemptible  = true
+    preemptible  = false
     machine_type = "e2-standard-2"
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
