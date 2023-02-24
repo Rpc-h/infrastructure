@@ -85,7 +85,6 @@ resource "google_container_cluster" "main" {
   #  }
 }
 
-#TODO - add SSH keys to nodes
 resource "google_container_node_pool" "main" {
   name       = var.name
   location   = var.google_region
