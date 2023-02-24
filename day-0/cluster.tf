@@ -12,6 +12,11 @@ resource "google_container_cluster" "main" {
 
   network = google_compute_network.main.name
 
+  scheduling {
+    //TODO - move to SPOT when apps are ready
+    provisioning_model = "STANDARD"
+  }
+
   cluster_autoscaling {
     enabled = true
 
@@ -65,32 +70,32 @@ resource "google_container_cluster" "main" {
     enabled = true
   }
 
-  logging_config {
-    enable_components = [
-      "SYSTEM_COMPONENTS",
-      "WORKLOADS"
-    ]
-  }
-
-  monitoring_config {
-    enable_components = [
-      "SYSTEM_COMPONENTS",
-      #Workloads is deprecated in favour of managed prometheus
-    ]
-
-    managed_prometheus {
-      enabled = true
-    }
-  }
+  #Enable if you want to have metrics + logs on GCP
+  #  logging_config {
+  #    enable_components = [
+  #      "SYSTEM_COMPONENTS",
+  #      "WORKLOADS"
+  #    ]
+  #  }
+  #
+  #  monitoring_config {
+  #    enable_components = [
+  #      "SYSTEM_COMPONENTS",
+  #      #Workloads is deprecated in favour of managed prometheus
+  #    ]
+  #
+  #    managed_prometheus {
+  #      enabled = true
+  #    }
+  #  }
 }
 
 #TODO - add SSH keys to nodes
 resource "google_container_node_pool" "main" {
-  name     = var.name
-  location = var.google_region
-  cluster  = google_container_cluster.main.name
-  #Node count per zone
-  node_count = 1
+  name       = var.name
+  location   = var.google_region
+  cluster    = google_container_cluster.main.name
+  node_count = 1 #Node count per zone
 
   node_config {
     preemptible  = true
