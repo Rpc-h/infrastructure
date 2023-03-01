@@ -14,6 +14,7 @@ spec:
         - name: HELM_VALUES
           value: |
             ingress:
+              className: traefik
               enabled: true
               annotations:
                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
