@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  name: rpch-monitor
+  namespace: rpch-monitor
+  annotations:
+    cert-manager.io/cluster-issuer: rpch-tech
+spec:
+  rules:
+  - host: monitor.rpch.tech
+    http:
+      paths:
+      - backend:
+          service:
+            name: rpch-monitor
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - monitor.rpch.tech
+    secretName: monitor.rpch.tech-tls
+status:
+  loadBalancer: {}

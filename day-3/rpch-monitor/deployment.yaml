@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: rpch-monitor
+  name: rpch-monitor
+  namespace: rpch-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rpch-monitor
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: rpch-monitor
+    spec:
+      containers:
+        - name: server
+          image: europe-west6-docker.pkg.dev/rpch-375921/rpch/rpc-server:429d8fa
+          env:
+            - name: DEBUG
+              value: rpch*,-*metrics
+            - name: RESPONSE_TIMEOUT
+              value: '20000'
+            - name: DISCOVERY_PLATFORM_API_ENDPOINT
+              value: https://staging.discovery.rpch.tech
+            - name: PORT
+              value: '8080'
+            - name: DATA_DIR
+              value: app
+            - name: CLIENT
+              value: mirror-wrote-willing-pilot-master
+        - image: python:3.9
+          name: monitor
+          #TODO - this command is quick and dirty. For production, the dependencies must be a part of the image itself,
+          #so every time the container starts, they do not get downloaded
+          command:
+            - "/bin/bash"
+            - "-c"
+            - "git clone https://github.com/RPC-h/RPCh-monit0r && cd RPCh-monit0r && pip install -q -r requirements.txt && python ./RPCh-mon.py"
+          volumeMounts:
+            - mountPath: /mnt
+              name: mnt
+        - image: python:3.9
+          name: web
+          command:
+            - "/bin/bash"
+            - "-c"
+            - "cd /mnt && python3 -m http.server"
+          ports:
+            - containerPort: 8000
+              name: http
+          volumeMounts:
+            - mountPath: /mnt
+              name: mnt
+      volumes:
+        - name: mnt
+          emptyDir: {}
