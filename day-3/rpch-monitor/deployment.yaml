@@ -41,7 +41,7 @@ spec:
           command:
             - "/bin/bash"
             - "-c"
-            - "git clone https://github.com/SCBuergel/RPCh-monit0r && cd RPCh-monit0r && pip install -q -r requirements.txt && python ./RPCh-mon.py"
+            - "git clone https://github.com/RPC-h/RPCh-monit0r && cd RPCh-monit0r && pip install -q -r requirements.txt && python ./RPCh-mon.py"
           volumeMounts:
             - mountPath: /mnt
               name: mnt
