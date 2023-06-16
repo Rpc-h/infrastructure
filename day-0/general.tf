@@ -1,10 +1,12 @@
 terraform {
-  backend "gcs" {
-    prefix = "day-0"
+  required_providers {
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = ">= 1.40.0, < 2.0.0"
+    }
   }
 }
 
-provider "google" {
-  project = var.google_project
-  region  = var.google_region
+provider "hcloud" {
+  token = var.token
 }

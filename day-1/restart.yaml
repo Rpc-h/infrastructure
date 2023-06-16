@@ -1,0 +1,13 @@
+- name: Restart playbook
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: Stop all services
+      ansible.builtin.shell:
+        chdir: /root/RPCh/apps/exit-node
+        cmd: docker compose down
+      register: output
+
+    - name: Show results
+      ansible.builtin.debug:
+        var: output
