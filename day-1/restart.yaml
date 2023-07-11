@@ -1,11 +1,23 @@
 - name: Restart playbook
   gather_facts: false
   hosts: all
+  become: true
+  strategy: free
   tasks:
     - name: Stop all services
       ansible.builtin.shell:
         chdir: /root/RPCh/apps/exit-node
         cmd: docker compose down
+      register: output
+
+    - name: Show results
+      ansible.builtin.debug:
+        var: output
+
+    - name: Start all services
+      ansible.builtin.shell:
+        chdir: /root/RPCh/apps/exit-node
+        cmd: docker compose up -d --build
       register: output
 
     - name: Show results

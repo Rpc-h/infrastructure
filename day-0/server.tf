@@ -8,6 +8,8 @@ resource "hcloud_server" "main" {
     "martins.eglitis",
     "tino.breddin",
     "tino.breddin-2",
-    "steven.noni"
+    "steven.noni",
+    "ronny.esterluss",
+    "ronny.esterluss-2"
   ]
 }
