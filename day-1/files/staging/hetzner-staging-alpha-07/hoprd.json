@@ -1,0 +1,11 @@
+{
+  ".hoprd.id": {
+    "peer_id": "12D3KooWJSqDxGfpLhb5noYF5M8pG4pXRSZkszak3DN79nWsuZ2U",
+    "packet_key": "0x8034ff0065bf30813928351b3ed5ea6e8cca14ac37571afed748c3dbc6aeba75",
+    "chain_key": "0x0393ceb1c9c09db37c7894278f055f1c9c8818634e110f3e70f179a1979de5da79",
+    "native_address": "0x11b2acb1dd259368acca923f915c1b46a141d01b",
+    "uuid": "d13c2b10-e858-48b8-99e7-97a3ffe3bc5f"
+  },
+  "safe_address": "0xEc32f05ED3Bd1A61abFb993d3990B5F8Ce91e4E9",
+  "module_address": "0x5681a39ff2f8584759B32cBd59918E86356fd48A"
+}

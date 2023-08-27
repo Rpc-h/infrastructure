@@ -1,0 +1,37 @@
+.POSIX:
+
+.PHONY: ensure-env-variable-is-set
+ensure-env-variable-is-set:
+ifeq ($(env),)
+	echo "Parameter <env> is missing" >&2 && exit 1
+endif
+
+.PHONY: ansible-playbook-args
+ansible-playbook-args=
+ifeq ($(debug),true)
+	debug_playbook=-vvvv
+endif
+ifneq ($(skip),)
+	skipped_tags=--skip-tags=$(skip)
+endif
+ifneq ($(tags),)
+	specific_tags=--tags $(tags)
+endif
+ifneq ($(limit),)
+	specific_hosts=--limit $(limit)
+endif
+vault=--vault-password-file ./.vault_pass
+tee_log=tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+ansible_inventory=-i "./inventories/$(env)/"
+ansible_playbook=time ansible-playbook $(ansible_inventory) $(vault) $(debug_playbook) $(skipped_tags) $(specific_tags) $(specific_hosts)
+
+all: help
+
+.PHONY: install
+install: ensure-env-variable-is-set $(ansible-playbook-args)
+install: ## Install Hoprd on servers
+	$(ansible_playbook) ./install.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: help
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
