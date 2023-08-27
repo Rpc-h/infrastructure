@@ -32,6 +32,20 @@ install: ensure-env-variable-is-set $(ansible-playbook-args)
 install: ## Install Hoprd on servers
 	$(ansible_playbook) ./install.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
+# The ansible .vault_pass can be downloaded from Bitwarden by name `Ansible Vault Pass - Rpch`
+.PHONY: decrypt
+decrypt: ensure-env-variable-is-set
+decrypt: ## Install Hoprd on servers
+	for i in {1..9}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-0$$i/.env ./files/$(env)/hetzner-staging-alpha-0$$i/.hoprd.id; done
+	for i in {10..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-$$i/.env ./files/$(env)/hetzner-staging-alpha-$$i/.hoprd.id; done
+
+.PHONY: encrypt
+encrypt: ensure-env-variable-is-set
+encrypt: ## Install Hoprd on servers
+	for i in {1..9}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-0$$i/.env ./files/$(env)/hetzner-staging-alpha-0$$i/.hoprd.id; done
+	for i in {10..25}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-$$i/.env ./files/$(env)/hetzner-staging-alpha-$$i/.hoprd.id; done
+
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
