@@ -32,6 +32,12 @@ install: ensure-env-variable-is-set $(ansible-playbook-args)
 install: ## Install Hoprd on servers
 	$(ansible_playbook) ./install.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
+.PHONY: show
+show: ensure-env-variable-is-set $(ansible-playbook-args)
+show: ## Install Hoprd on servers
+	$(ansible_playbook) ./show.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+
 # The ansible .vault_pass can be downloaded from Bitwarden by name `Ansible Vault Pass - Rpch`
 .PHONY: decrypt
 decrypt: ensure-env-variable-is-set
