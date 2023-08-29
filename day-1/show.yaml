@@ -10,10 +10,15 @@
         peer_id: "{{ (lookup('ansible.builtin.file', 'files/' + environment_name + '/' + inventory_hostname + '/hoprd.json') | from_json).get('.hoprd.id').get('peer_id') }}"
         native_address: "{{ (lookup('ansible.builtin.file', 'files/' + environment_name + '/' + inventory_hostname + '/hoprd.json') | from_json).get('.hoprd.id').get('native_address') }}"
         hoprd_api_endpoint: "http://{{ ansible_default_ipv4.address }}:3001"
-        rpch_public_key: 'tbd'
+        rpch_public_key: "{{ lookup('ansible.builtin.file', 'files/' + environment_name + '/' + inventory_hostname + '/.env-rpch') | regex_findall('^RPCH_PUBLIC_KEY=.*', multiline=True, ignorecase=True) | first | regex_replace('RPCH_PUBLIC_KEY=','') }}"
     - name: "Build JSON"
       ansible.builtin.set_fact:
-        rpch_properties: '{ "chain_id": "100", "peer_id": "{{ peer_id }}", "native_address":  "{{ native_address }}", "hoprd_api_endpoint": "{{ hoprd_api_endpoint }}", "rpch_public_key": "{{ rpch_public_key }}" }'
+        rpch_properties: '{ "node": "{{ inventory_hostname }}", "chain_id": "100", "peer_id": "{{ peer_id }}", "native_address":  "{{ native_address }}", "hoprd_api_endpoint": "{{ hoprd_api_endpoint }}", "rpch_public_key": "{{ rpch_public_key }}" }'
     - name: Print variables
       debug:
         var: rpch_properties
+    - name: Update Rpch variables
+      ansible.builtin.copy:
+        content: "{{ rpch_properties | to_nice_json }}"
+        dest: "{{ playbook_dir }}/files/{{ environment_name }}/{{ inventory_hostname }}/rpch.json"
+      delegate_to: localhost
