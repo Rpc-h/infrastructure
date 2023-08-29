@@ -81,6 +81,11 @@
           mode: "400"
       tags:
         - rpch
+    - name: Add public IP to .env
+      lineinfile:
+        dest: "/root/RPCh/apps/exit-node/.env-hoprd"
+        line: "HOPRD_HOST={{ ansible_default_ipv4.address }}:9091"
+        state: present
     - name: Start all services
       ansible.builtin.shell:
         chdir: /root/RPCh/apps/exit-node

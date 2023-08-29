@@ -4,84 +4,84 @@
 # Include <full_github_repo_path>/ansible/hcloud_ssh_config_rpch_staging
 # 
 
-Host hetzner-staging-alpha-*
+Host hetzner-staging-*
      User root
      Port 22
      IdentityFile ~/.ssh/id_ed25519
      StrictHostKeyChecking no
      IdentitiesOnly yes
 
-Host hetzner-staging-alpha-01
+Host hetzner-staging-1
      HostName 78.47.150.194
 
-Host hetzner-staging-alpha-02
+Host hetzner-staging-2
      HostName 91.107.194.8
 
-Host hetzner-staging-alpha-03
+Host hetzner-staging-3
      HostName 49.12.246.83
 
-Host hetzner-staging-alpha-04
+Host hetzner-staging-4
      HostName 159.69.122.70
 
-Host hetzner-staging-alpha-05
+Host hetzner-staging-5
      HostName 142.132.184.57
 
-Host hetzner-staging-alpha-06
+Host hetzner-staging-6
      HostName 128.140.52.34
 
-Host hetzner-staging-alpha-07
+Host hetzner-staging-7
      HostName 116.203.251.244
 
-Host hetzner-staging-alpha-08
+Host hetzner-staging-8
      HostName 49.12.13.222
 
-Host hetzner-staging-alpha-09
+Host hetzner-staging-9
      HostName 49.13.13.52
 
-Host hetzner-staging-alpha-10
+Host hetzner-staging-10
      HostName 49.13.13.55
 
-Host hetzner-staging-alpha-11
+Host hetzner-staging-11
      HostName 91.107.205.15
 
-Host hetzner-staging-alpha-12
+Host hetzner-staging-12
      HostName 49.13.13.104
 
-Host hetzner-staging-alpha-13
+Host hetzner-staging-13
      HostName 49.13.13.114
 
-Host hetzner-staging-alpha-14
+Host hetzner-staging-14
      HostName 49.13.13.117
 
-Host hetzner-staging-alpha-15
+Host hetzner-staging-15
      HostName 49.13.13.106
 
-Host hetzner-staging-alpha-16
+Host hetzner-staging-16
      HostName 95.217.234.91
 
-Host hetzner-staging-alpha-17
+Host hetzner-staging-17
      HostName 65.21.54.172
 
-Host hetzner-staging-alpha-18
+Host hetzner-staging-18
      HostName 135.181.156.126
 
-Host hetzner-staging-alpha-19
+Host hetzner-staging-19
      HostName 135.181.87.129
 
-Host hetzner-staging-alpha-20
+Host hetzner-staging-20
      HostName 135.181.207.234
 
-Host hetzner-staging-alpha-21
+Host hetzner-staging-21
      HostName 37.27.7.199
 
-Host hetzner-staging-alpha-22
+Host hetzner-staging-22
      HostName 135.181.101.184
 
-Host hetzner-staging-alpha-23
+Host hetzner-staging-23
      HostName 95.217.133.151
 
-Host hetzner-staging-alpha-24
+Host hetzner-staging-24
      HostName 95.217.161.46
 
-Host hetzner-staging-alpha-25
+Host hetzner-staging-25
      HostName 37.27.18.179

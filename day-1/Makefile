@@ -42,14 +42,12 @@ show: ## Install Hoprd on servers
 .PHONY: decrypt
 decrypt: ensure-env-variable-is-set
 decrypt: ## Install Hoprd on servers
-	for i in {1..9}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-0$$i/.env ./files/$(env)/hetzner-staging-alpha-0$$i/.env-rpch; done
-	for i in {10..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-$$i/.env ./files/$(env)/hetzner-staging-alpha-$$i/.env-rpch; done
+	for i in {1..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-$$i/.env ./files/$(env)/hetzner-$(env)-$$i/.env-rpch; done
 
 .PHONY: encrypt
 encrypt: ensure-env-variable-is-set
 encrypt: ## Install Hoprd on servers
-	for i in {1..9}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-0$$i/.env ./files/$(env)/hetzner-staging-alpha-0$$i/.env-rpch; done
-	for i in {10..25}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-staging-alpha-$$i/.env ./files/$(env)/hetzner-staging-alpha-$$i/.env-rpch; done
+	for i in {1..25}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-$$i/.env ./files/$(env)/hetzner-$(env)-$$i/.env-rpch; done
 
 
 .PHONY: help
