@@ -1,9 +1,16 @@
 - name: Install playbook
-  gather_facts: false
+  gather_facts: true
   hosts: all
   become: true
   strategy: free
   tasks:
+    - name: Create app directory
+      ansible.builtin.file:
+        path: "/opt/hoprd"
+        state: directory
+        mode: 0640
+      tags:
+        - install
     - name: Install required packages
       ansible.builtin.apt:
         name:
@@ -14,18 +21,21 @@
           - git
         state: latest
         update_cache: true
-
+      tags:
+        - install
     - name: Add signing key
       ansible.builtin.apt_key:
         url: "https://download.docker.com/linux/debian/gpg"
         state: present
-
+      tags:
+        - install
     - name: Add repository into sources list
       ansible.builtin.apt_repository:
-        repo: "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable"
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bullseye stable"
         state: present
         filename: docker
-
+      tags:
+        - install
     - name: Install Docker
       ansible.builtin.apt:
         name:
@@ -36,18 +46,55 @@
           - docker-compose-plugin
         state: latest
         update_cache: true
-
+      tags:
+        - install
     - name: Pull the repo
       ansible.builtin.git:
         repo: https://github.com/Rpc-h/RPCh
         dest: /root/RPCh
-
+        version: feature/setup-rotsee-nodes
+        force: yes
+      tags:
+        - rpch
+    - name: "Copy files"
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+      with_items:
+        - src: "{{ environment_name }}/{{ inventory_hostname }}/.env"
+          dest: "/root/RPCh/apps/exit-node/.env-hoprd"
+          owner: root
+          group: root
+          mode: "400"
+        - src: "{{ environment_name }}/{{ inventory_hostname }}/.env-rpch"
+          dest: "/root/RPCh/apps/exit-node/.env-rpch"
+          owner: root
+          group: root
+          mode: "400"
+        - src: "{{ environment_name }}/{{ inventory_hostname }}/.hoprd.id"
+          dest: "/root/RPCh/apps/exit-node/.hoprd.id"
+          owner: root
+          group: root
+          mode: "400"
+      tags:
+        - rpch
+    - name: Add public IP to .env
+      lineinfile:
+        dest: "/root/RPCh/apps/exit-node/.env-hoprd"
+        line: "HOPRD_HOST={{ ansible_default_ipv4.address }}:9091"
+        state: present
     - name: Start all services
       ansible.builtin.shell:
         chdir: /root/RPCh/apps/exit-node
         cmd: docker compose up -d --build
       register: output
-
+      tags:
+        - rpch
     - name: Show results
       ansible.builtin.debug:
         var: output
+      tags:
+        - rpch
