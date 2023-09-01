@@ -1,7 +1,7 @@
 
 # Add this line to your ~/.ssh/config file
 # 
-# Include <full_github_repo_path>/ansible/hcloud_ssh_config_rpch_staging
+# Include <full_github_repo_path>/day-1/hcloud_ssh_config_rpch_staging
 # 
 
 Host hetzner-staging-*
