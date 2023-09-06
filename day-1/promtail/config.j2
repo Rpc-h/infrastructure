@@ -15,7 +15,7 @@ scrape_configs:
         refresh_interval: 5s
     pipeline_stages:
       - static_labels:
-          hostname: "hetzner-staging-alpha-17"
+          hostname: "{{ inventory_hostname }}"
     relabel_configs:
       - source_labels: [ '__meta_docker_container_name' ]
         regex: '/(.*)'
