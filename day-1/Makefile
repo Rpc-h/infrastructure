@@ -49,7 +49,7 @@ install-exit-node: ## Install Rpch Exit Node service
 .PHONY: restart
 restart: ensure-env-variable-is-set $(ansible-playbook-args)
 restart: ## Restart Hoprd on servers
-	$(ansible_playbook) ./restart.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+	$(ansible_playbook) --extra-vars "clean_db=$(clean)" ./restart.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
 .PHONY: show
 show: ensure-env-variable-is-set $(ansible-playbook-args)

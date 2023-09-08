@@ -1,12 +1,17 @@
 # Commons tools
 
 ```
-make install-server env=staging debug=true
-make install-hoprd env=staging debug=true
-make install-exit-node env=staging debug=true
+make install-server env=staging
+make install-hoprd env=staging
+make install-exit-node env=staging
+
 make install-hoprd env=staging debug=true limit=hetzner-staging-alpha-4
-make encrypt env=staging debug=true
-make decrypt env=staging debug=true
-make show env=staging debug=true
+
+make restart env=staging clean=false limit=hetzner-staging-alpha-11
+make restart env=staging clean=true
+
+make encrypt env=staging
+make decrypt env=staging
+make show env=staging
 
 ```
