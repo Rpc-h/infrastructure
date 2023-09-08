@@ -1,0 +1,52 @@
+- name: Install playbook
+  gather_facts: true
+  hosts: exit-node
+  become: true
+  strategy: free
+  vars:
+    rpch_exit_node_version: latest
+    rpch_data_dir: /app/db
+  tasks:
+    - name: Create app directory
+      ansible.builtin.file:
+        path: /opt/exit-node
+        state: directory
+        mode: 0777
+    - name: "Copy files"
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+      with_items:
+        - src: "{{ environment_name }}/{{ inventory_hostname }}/.env-rpch"
+          dest: "/opt/exit-node/.env"
+          owner: root
+          group: root
+          mode: "400"
+        - src: ".env-rpch-default"
+          dest: "/opt/exit-node/.env-default"
+          owner: root
+          group: root
+          mode: "400"
+        - src: "exit-node.service"
+          dest: "/etc/systemd/system/exit-node.service"
+          owner: root
+          group: root
+          mode: "0644"
+    - name: Apply docker-compose
+      ansible.builtin.template:
+        src: docker-compose.yaml.j2
+        dest: "/opt/exit-node/docker-compose.yaml"
+        owner: root
+        group: root
+        mode: "0640"
+    - name: reload systemctl
+      ansible.builtin.systemd:
+        daemon_reload: true
+    - name: Start Exit Node service
+      ansible.builtin.service:
+        name: "exit-node.service"
+        state: restarted
+        enabled: true

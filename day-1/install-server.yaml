@@ -1,4 +1,4 @@
-- name: Install playbook
+- name: Install Server
   gather_facts: true
   hosts: all
   become: true
@@ -48,51 +48,6 @@
         update_cache: true
       tags:
         - install
-    - name: Pull the repo
-      ansible.builtin.git:
-        repo: https://github.com/Rpc-h/RPCh
-        dest: /root/RPCh
-        version: feature/setup-rotsee-nodes
-        force: yes
-      tags:
-        - rpch
-    - name: "Copy files"
-      ansible.builtin.copy:
-        src: "{{ item.src }}"
-        dest: "{{ item.dest }}"
-        owner: "{{ item.owner }}"
-        group: "{{ item.group }}"
-        mode: "{{ item.mode }}"
-      with_items:
-        - src: "{{ environment_name }}/{{ inventory_hostname }}/.env"
-          dest: "/root/RPCh/apps/exit-node/.env-hoprd"
-          owner: root
-          group: root
-          mode: "400"
-        - src: "{{ environment_name }}/{{ inventory_hostname }}/.env-rpch"
-          dest: "/root/RPCh/apps/exit-node/.env-rpch"
-          owner: root
-          group: root
-          mode: "400"
-        - src: "{{ environment_name }}/{{ inventory_hostname }}/.hoprd.id"
-          dest: "/root/RPCh/apps/exit-node/.hoprd.id"
-          owner: root
-          group: root
-          mode: "400"
-      tags:
-        - rpch
-    - name: Add public IP to .env
-      lineinfile:
-        dest: "/root/RPCh/apps/exit-node/.env-hoprd"
-        line: "HOPRD_HOST={{ ansible_default_ipv4.address }}:9091"
-        state: present
-    - name: Start all services
-      ansible.builtin.shell:
-        chdir: /root/RPCh/apps/exit-node
-        cmd: docker compose up -d --build
-      register: output
-      tags:
-        - rpch
     - name: Install promtail
       ansible.builtin.shell:
         cmd: |
@@ -104,19 +59,15 @@
           mkdir -p /etc/promtail
     - name: Configure and upload promtail configuration
       template:
-        src: promtail/config.j2
+        src: config.j2
         dest: /etc/promtail/config.yaml
     - name: Upload promtail service
       ansible.builtin.copy:
-        src: promtail/promtail.service
+        src: promtail.service
         dest: /etc/systemd/system/promtail.service
     - name: Enable and start promtail
       ansible.builtin.shell:
         cmd: |
           systemctl enable promtail
           systemctl start promtail
-    - name: Show results
-      ansible.builtin.debug:
-        var: output
-      tags:
-        - rpch
+

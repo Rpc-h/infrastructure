@@ -14,6 +14,12 @@
       ansible.builtin.debug:
         var: output
 
+    # - name: Remove database
+    #   ansible.builtin.shell:
+    #     cmd: rm -rf /opt/hoprd/db
+    #   tags:
+    #     remove-db
+
     - name: Start all services
       ansible.builtin.shell:
         chdir: /root/RPCh/apps/exit-node

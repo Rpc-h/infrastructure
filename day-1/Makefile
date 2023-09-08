@@ -27,10 +27,29 @@ ansible_playbook=time ansible-playbook $(ansible_inventory) $(vault) $(debug_pla
 
 all: help
 
-.PHONY: install
-install: ensure-env-variable-is-set $(ansible-playbook-args)
-install: ## Install Hoprd on servers
-	$(ansible_playbook) ./install.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+.PHONY: galaxy
+galaxy: ## Install ansible dependent roles	
+	ansible-galaxy install --force -r requirements.yaml
+
+.PHONY: install-server
+install-server: ensure-env-variable-is-set $(ansible-playbook-args)
+install-server: ## Install servers components
+	$(ansible_playbook) ./install-server.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: install-hoprd
+install-hoprd: ensure-env-variable-is-set $(ansible-playbook-args)
+install-hoprd: ## Install Hoprd service
+	$(ansible_playbook) ./install-hoprd.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: install-exit-node
+install-exit-node: ensure-env-variable-is-set $(ansible-playbook-args)
+install-exit-node: ## Install Rpch Exit Node service
+	$(ansible_playbook) ./install-exit-node.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: restart
+restart: ensure-env-variable-is-set $(ansible-playbook-args)
+restart: ## Restart Hoprd on servers
+	$(ansible_playbook) ./restart.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
 .PHONY: show
 show: ensure-env-variable-is-set $(ansible-playbook-args)

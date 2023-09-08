@@ -1,0 +1,13 @@
+- name: Install Hoprd
+  gather_facts: true
+  hosts: entry-node, exit-node
+  become: true
+  strategy: free
+  tasks:
+    - name: "Setup Hoprd"
+      ansible.builtin.include_role:
+        name: hopr.hoprd
+      vars:
+        hoprd_identity_file: "{{ environment_name }}/{{ inventory_hostname }}/.hoprd.id"
+        hoprd_env_file: "{{ environment_name }}/{{ inventory_hostname }}/.env"
+        hoprd_version: latest

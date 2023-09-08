@@ -1,0 +1,7 @@
+---
+roles:
+  - name: "hopr.hoprd"
+    src: "https://github.com/hoprnet/ansible-hoprd.git"
+    scm: git
+    version: feature/first-version
+
