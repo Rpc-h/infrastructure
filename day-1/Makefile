@@ -54,7 +54,7 @@ restart: ## Restart Hoprd on servers
 .PHONY: show
 show: ensure-env-variable-is-set $(ansible-playbook-args)
 show: ## Install Hoprd on servers
-	$(ansible_playbook) ./show.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+	$(ansible_playbook) --ask-become-pass ./show.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
 
 # The ansible .vault_pass can be downloaded from Bitwarden by name `Ansible Vault Pass - Rpch`
