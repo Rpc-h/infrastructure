@@ -3,7 +3,7 @@ all:
   vars:
     ansible_python_interpreter: /usr/bin/python3
   children:
-    entry-node:
+    entry_node:
       hosts:
         hetzner-staging-alpha-1:
         hetzner-staging-alpha-2:
@@ -15,7 +15,7 @@ all:
         hetzner-staging-alpha-8:
         hetzner-staging-alpha-9:
         hetzner-staging-alpha-10:
-    exit-node:
+    exit_node:
       hosts:
         hetzner-staging-alpha-11:
         hetzner-staging-alpha-12:

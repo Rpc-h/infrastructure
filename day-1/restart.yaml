@@ -1,6 +1,6 @@
 - name: Restart entry Nodes
   gather_facts: false
-  hosts: entry-node,exit-node
+  hosts: entry_node,exit_node
   become: true
   vars:
     clean_db: false
@@ -24,7 +24,7 @@
 
 - name: Restart exit Nodes
   gather_facts: false
-  hosts: exit-node
+  hosts: exit_node
   become: true
   tasks:
     - name: Restart Exit Node service

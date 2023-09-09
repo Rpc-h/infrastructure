@@ -4,13 +4,6 @@
   become: true
   strategy: free
   tasks:
-    - name: Create app directory
-      ansible.builtin.file:
-        path: "/opt/hoprd"
-        state: directory
-        mode: 0640
-      tags:
-        - install
     - name: Install required packages
       ansible.builtin.apt:
         name:
@@ -31,7 +24,7 @@
         - install
     - name: Add repository into sources list
       ansible.builtin.apt_repository:
-        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bullseye stable"
+        repo: "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable"
         state: present
         filename: docker
       tags:
@@ -65,9 +58,11 @@
       ansible.builtin.copy:
         src: promtail.service
         dest: /etc/systemd/system/promtail.service
-    - name: Enable and start promtail
-      ansible.builtin.shell:
-        cmd: |
-          systemctl enable promtail
-          systemctl start promtail
-
+    - name: Reload systemctl
+      ansible.builtin.systemd:
+        daemon_reload: true
+    - name: Start Promtail service
+      ansible.builtin.service:
+        name: "promtail.service"
+        state: restarted
+        enabled: true

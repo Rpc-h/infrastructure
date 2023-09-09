@@ -1,0 +1,9 @@
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.81.142:3001",
+    "native_address": "0x8f08e270b3c163898eed4e08ed308000fad6d8c2",
+    "node": "production-15",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWEtTiTo22rErHB46vkUmzWZedZHpZA1TVwb5zZHHkzvGR",
+    "rpch_public_key": "0x03a6b261a55981c6aae4b60cc387db8e410eda8f6becc6c09451ebe96174ad7959"
+}

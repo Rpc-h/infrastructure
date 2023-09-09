@@ -3,6 +3,7 @@
     "hoprd_api_endpoint": "http://135.181.156.126:3001",
     "native_address": "0xad30a4ec22a7d2771dec712295d1c66dcaa338f7",
     "node": "hetzner-staging-alpha-18",
+    "node_type": "exit-node",
     "peer_id": "12D3KooWAkQAoZcxpGGzdDUc37EtuoNsWx4gegEwTdG39Q5BFnaB",
     "rpch_public_key": "0x03a553a5bc9339d81d24eb1d3dfa14d582919c4a60e214458a33d2c16d5cbdc486"
 }

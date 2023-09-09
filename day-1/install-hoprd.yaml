@@ -1,6 +1,6 @@
 - name: Install Hoprd
   gather_facts: true
-  hosts: entry-node, exit-node
+  hosts: entry_node,exit_node
   become: true
   strategy: free
   tasks:

@@ -1,6 +1,6 @@
 - name: Install playbook
   gather_facts: true
-  hosts: exit-node
+  hosts: exit_node
   become: true
   strategy: free
   vars:
