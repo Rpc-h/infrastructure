@@ -3,7 +3,7 @@
     "hoprd_api_endpoint": "http://65.108.62.69:3001",
     "native_address": "0xadceb19f40ddc3e8450b44759288d0b61445bfc9",
     "node": "production-18",
-    "node_type": "entry-node",
+    "node_type": "exit-node",
     "peer_id": "12D3KooWMwHerbNjxdaBSYHmz9x6Pqcuy8e58DvRdqVzJgdzkHdz",
     "rpch_public_key": "0x0366c354e4bb7900e1bd66754f93a7d22e9c9a20f583fcfe1019862be02400b36c"
 }
