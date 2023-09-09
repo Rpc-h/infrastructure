@@ -1,0 +1,226 @@
+[{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://78.47.150.194:3001",
+    "native_address": "0xeced17c48f6b9cfe446132152ec08788e4b4279d",
+    "node": "hetzner-staging-alpha-1",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWNe4N2isa7V4T9YhBxuPCb8jAdQWMQXSHRsHAXBKgAENs",
+    "rpch_public_key": "0x035e46100264c8c79241018057ff6b41f5b883041a8cf3fea0040c0ff9893fbc28"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://91.107.194.8:3001",
+    "native_address": "0xe756a48e0f7c8631a00fdd6daca8fa9753bb1435",
+    "node": "hetzner-staging-alpha-2",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWGzvwfnfiM8obDc1DKc6R1xU36ySnjc3UFiRCt1fsnBXo",
+    "rpch_public_key": "0x03d13b704a80840976c48fb29389f6126563c4974241791a00464ac168c1f18afc"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.12.246.83:3001",
+    "native_address": "0xbd2b7b4d3f4654ac4c74380aa164ae2a9354f590",
+    "node": "hetzner-staging-alpha-3",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWPp18qnLofr1NonMBH8uefHcpcVUoJb3BXbQ3vezC7krg",
+    "rpch_public_key": "0x0310c71f0252585c3141f8b95a7bee3a28474a0c28f89652a11d4fd99c06892f4e"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://159.69.122.70:3001",
+    "native_address": "0xff00fd9d3a637edb9e79be38c928d4c047902778",
+    "node": "hetzner-staging-alpha-4",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWRQ1E9GGTZNpHDJyhpFbQ2mreCbgchoiEH2Ab67or7M3R",
+    "rpch_public_key": "0x022faa8b4bd17da122b6427c17d267c99b23d4c57009cd2b22f5828f2847b21f53"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://142.132.184.57:3001",
+    "native_address": "0x3d725baabd667bfb038d57e06853a3fdefde3544",
+    "node": "hetzner-staging-alpha-5",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWCMZAbZHhF16G4UaLx43Dmmbquxb9k2pEr5HPB3DiM8G7",
+    "rpch_public_key": "0x032b530faa2cd59b2842e3c1a42e4d362db667ad6c4d21c6f8d15caa5e6b0e7e85"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://128.140.52.34:3001",
+    "native_address": "0xf1829e6b819041be7d8f5c1d4aafadc7f1566e24",
+    "node": "hetzner-staging-alpha-6",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWR59W4etXE6yBiNPiRM4XDUY2NDichMajVmxHrZwL8tZJ",
+    "rpch_public_key": "0x034f27b8174974ad8a171119be090e412081d3a9d0c39f359ce4368f55d25cae7f"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://116.203.251.244:3001",
+    "native_address": "0x11b2acb1dd259368acca923f915c1b46a141d01b",
+    "node": "hetzner-staging-alpha-7",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWJSqDxGfpLhb5noYF5M8pG4pXRSZkszak3DN79nWsuZ2U",
+    "rpch_public_key": "0x0323d5b91c56a6191d9f0a3bfc8edf857dd0793fc818b1a5e13d2c81a8942232ed"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.12.13.222:3001",
+    "native_address": "0xd37c45dd951b326148c9613a73c692a3a2144255",
+    "node": "hetzner-staging-alpha-8",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWAuKmJAyLrjS7ejtvEGyanmVzsVxHZMqjmyQmUhKsMavA",
+    "rpch_public_key": "0x0278ebcf65f33e8792134ed67fd6ef0ed26cd5af418a2740166b9662bd13d249a7"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.13.13.52:3001",
+    "native_address": "0x732e39520f0674f290c0016105d03982977c1677",
+    "node": "hetzner-staging-alpha-9",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWNsW2L3tjmYzXvYvRmk5iLZCu5P8giNBou2AcfPyJxQpy",
+    "rpch_public_key": "0x02027cb43a1417b48b0a3f70b2bbf3a32e478767d81f609ddb4e6afa78ecd8b14e"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.13.13.55:3001",
+    "native_address": "0x5a724a41b722ac7c07c9c1fbe1645e478920dc3f",
+    "node": "hetzner-staging-alpha-10",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWCextLu2LF2sJ1rDAVR93krfHMSv6UqrnuLzJax98Hftv",
+    "rpch_public_key": "0x033b283f414f513857c11d7109ec02fec575b3948b6f23d721456a28e1414108cb"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://91.107.205.15:3001",
+    "native_address": "0xb26d8068c9a2412b6a3f4b765986037a1a815103",
+    "node": "hetzner-staging-alpha-11",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWAsLqUwdAqYuaDNEqAwZToiGXa7PKF73RhNgAHKHnhndt",
+    "rpch_public_key": "0x02bcfc5bbf82f1f49630de86a4c19c0b46a0ba3eaf163a9f347c2a1fc526435226"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.13.13.104:3001",
+    "native_address": "0xfd9894dd423fbdfcc18cddd416f4513e9624ee32",
+    "node": "hetzner-staging-alpha-12",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWKBYQK36RfNDvWyxLJms4rPypckQBwEokraTNd6gacnaf",
+    "rpch_public_key": "0x0390e29fac33306fa2d8394b00b0a38a4f2c7562586d75bf801faa3efab8a03276"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.13.13.114:3001",
+    "native_address": "0x3920892ef78e62fcc26c5ce1b598b045b97e3aaa",
+    "node": "hetzner-staging-alpha-13",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWJ1m6KxHTNbkH24oo3mszuKxfPggYHRXSGTEGp42to3sd",
+    "rpch_public_key": "0x024f89e537a843e44b36acb2a44b5acdf46b64886bcc0dabebcc777b39aa2c204b"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.13.13.117:3001",
+    "native_address": "0x88345f5341c0e27b3c7a8f7fe5d29b56f3e521d4",
+    "node": "hetzner-staging-alpha-14",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWNq3AjDKgqyyQxHKD8MxBf8ikGvfhk8npWX2y5TvWA6cQ",
+    "rpch_public_key": "0x027ef9c82a9db07a52226a652ca1c6fd3afb7b8fba9ba37aa8fc6d249d217cc75c"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://49.13.13.106:3001",
+    "native_address": "0x5e7ab9cbd3d9ab669aa1c593d6c3a172ffca9ec7",
+    "node": "hetzner-staging-alpha-15",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWMf2Tw6beVpZYVwBgb6gzGDnQp8Fh1V9ZkisW2L92THNF",
+    "rpch_public_key": "0x025a2fd4d274d1a002479dcef3b26c3971f3163bb164503fcfd806418c81549a43"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.217.234.91:3001",
+    "native_address": "0x20c4d0e1610e41f3e9a81d55eb0c136a5f66c2d6",
+    "node": "hetzner-staging-alpha-16",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWBegPJotpGcV4tJXqRsASs5k3nzXvyxTcpoT97HeqsVLL",
+    "rpch_public_key": "0x03e5a78e7ec2d2dab60036122a478445cd95397f8425fc08aea609c4b74d8c046c"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.21.54.172:3001",
+    "native_address": "0x363a9488967ae3c38661ca627c402d3990ad084b",
+    "node": "hetzner-staging-alpha-17",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWBsGxZZJ4ae8qrDt5apzwRofC9ersbbjNMGzs7vysESPW",
+    "rpch_public_key": "0x024ea720db27313ac47d49b2ed5f8be35a9a8ad309c913fb2fb7000fe625178df9"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.156.126:3001",
+    "native_address": "0xad30a4ec22a7d2771dec712295d1c66dcaa338f7",
+    "node": "hetzner-staging-alpha-18",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWAkQAoZcxpGGzdDUc37EtuoNsWx4gegEwTdG39Q5BFnaB",
+    "rpch_public_key": "0x03a553a5bc9339d81d24eb1d3dfa14d582919c4a60e214458a33d2c16d5cbdc486"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.87.129:3001",
+    "native_address": "0x906d27952f5dfdeaa562e429d08013968eea681e",
+    "node": "hetzner-staging-alpha-19",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWA7ifmGt4oK1qXmPLqPJK77AYk7Nw5pSAsBtz1FKtRjnT",
+    "rpch_public_key": "0x03bf3ffb1e6b2329d8ea2a01d40a99107401da3a6259c73b648a7fbfaf40096185"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.207.234:3001",
+    "native_address": "0xd560ea27d40302a667d7872a79e650f4f5e47926",
+    "node": "hetzner-staging-alpha-20",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWJ5fZzhVmpVVx4CCmKMd5zEPJmMoWLWQQbS42AF3o7oW9",
+    "rpch_public_key": "0x02f868e2df7d864ea66195672428f4e6272e44c2518e53e6164b89dad28463913c"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://37.27.7.199:3001",
+    "native_address": "0x840d0fbaa1d92cabc2e810355f69b8b900658646",
+    "node": "hetzner-staging-alpha-21",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWBQLneNzeGBHpu6yUCo7YrK3UV7iTfqzPhu7MU5wncJtS",
+    "rpch_public_key": "0x0269cb907a1b1aab1e42fec05578ae67f766cc18845c1faf6dd4cefa483328ae18"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.101.184:3001",
+    "native_address": "0x78d294676bbd9030c6ff83899d4d42723a5ff71f",
+    "node": "hetzner-staging-alpha-22",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWDu7CWqYebNB8kNrCJKyp9xacpw4Ab39bc4PnbymSQG5f",
+    "rpch_public_key": "0x02a929207d302e122a1d37775df869b7d5ab24d16a21b6ccfd1fdba9b1f7de6590"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.217.133.151:3001",
+    "native_address": "0x0de9a4482f6fea7c83d099cbf0e339207c0dd386",
+    "node": "hetzner-staging-alpha-23",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWQEtGq8DbK6LVLN9UFfYjsxyWAYecEA71x9mf8AU295K9",
+    "rpch_public_key": "0x03c15383d9b740e9508433e94c2c50f163de71a3237931c26cece1f988bf27908d"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.217.161.46:3001",
+    "native_address": "0xe57f5e26ccd25aed862d03956d169e4af5b587e4",
+    "node": "hetzner-staging-alpha-24",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWMHHVdet5Yi7cJwMjHwsrPyXAWTnWGk9vpep6zx5jLSJ3",
+    "rpch_public_key": "0x0325bb32180f40c3f6630ccaf28e71890c211740f2f4a5ffe882e863a78f75a186"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://37.27.18.179:3001",
+    "native_address": "0x0ff99382b671eb888bf7fd9f5c2bc7e2b2260c07",
+    "node": "hetzner-staging-alpha-25",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWD2fDM2t6bs7GpPjvbDETsKo3g5VCDvCdhrTjJsM95gsL",
+    "rpch_public_key": "0x0356dd13ea4c7671f349c6848242672f012fcddfd6005e5af0552dd56cdebf2749"
+}
+]

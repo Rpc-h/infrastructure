@@ -1,0 +1,227 @@
+[
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.217.237.141:3001",
+    "native_address": "0x4c3af075e46a143e0829991e6acc84629173e503",
+    "node": "production-0",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWL9LzhMKX9sAFqUPytHGUyUyr3mZgDCCHYqRu6kRqC1f9",
+    "rpch_public_key": "0x03340fb5faa6ed4252060d9b7e9586581ef1356860aeaa31be369bae526e0f1d48"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.92.114:3001",
+    "native_address": "0x289a1f807105f4c463f92c5b3b89d091b37d4905",
+    "node": "production-1",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWSGvn7VGFe2T5xzbr6g7KHFYieNgGK54nTQb5jhe65dQE",
+    "rpch_public_key": "0x0224a966ed60399ce99ae9fbc0a61fff6f0d6c9ae22dde49da5b999e7c6c51670f"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.80.245:3001",
+    "native_address": "0x2211494cc3086b9f4f2e30dbbdab9ab9349c8793",
+    "node": "production-2",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWQUbohvkJPseZGjXUQATXAMpNfx9SjC7e9jNRx5k7EzXJ",
+    "rpch_public_key": "0x0323055d2748e43b6b0d6381727bec049e0a54ae993aa940f2211da3c3a3aec864"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.107.160:3001",
+    "native_address": "0xd3c824660a782411d455fbe821ec788f0c271fe2",
+    "node": "production-3",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWKw5BnTpPMk82qbkRcLiJCrwdZYTiWquP4Tej9W93df8D",
+    "rpch_public_key": "0x02922ce8ae70cf3896785f2a92b68ba77e1a4c82ff1d6e8a16c1e82c044f3051fd"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.82.212:3001",
+    "native_address": "0x70ccc45fc99891ee21f8c10a9632c37f133607a5",
+    "node": "production-4",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWHCL9d8CrAhjLNLWqjHGK4PGzPmEAj81Pmsc9bz6uiaJz",
+    "rpch_public_key": "0x03c627ec566202b3df5f63bb69826952fe141c41ab6ba4a7cf3c04c718f5950db3"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.217.215.176:3001",
+    "native_address": "0xbe70ec1397ba69fee4f152038d9dd42acaa60691",
+    "node": "production-5",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWCw9aUj9dm44hdxGTh9Vp74sCMvnTradkG932Qt5fcK9W",
+    "rpch_public_key": "0x02a13b7672510ad32449a39562db59f5d58a067eab39fa676ad7c2323449fb33f3"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.108.216.137:3001",
+    "native_address": "0xabe9e59b681ab5a57438ba13b143370ef4e3bfdc",
+    "node": "production-6",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWDfRepVqhth71M6UXaPzSmaSDha3pQEGrDA1CXr3cw8qa",
+    "rpch_public_key": "0x031d56ad15f21d3de06e5c27e1b7c48d1c8b4502077d1f555ee65eb079cb821c72"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.109.161.241:3001",
+    "native_address": "0xb0c8c9293c501237654ffdbe0d24ed26434875e9",
+    "node": "production-7",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWJms9Ua9Fo7cbUbGyfpRG4UQKjQzXKpsi6m6W77qHTJg2",
+    "rpch_public_key": "0x02f49bf4e795f002a8f999709e0bd85fda1ef156ee1fd284443f7959887f61e098"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.109.164.194:3001",
+    "native_address": "0x57e9964b709ad126dc36cc6d1d2c877128ca1c61",
+    "node": "production-8",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWK6WAqxcqYwnyqSXCJHQxJ1R24d6sYwbKp43A9UskH9Du",
+    "rpch_public_key": "0x02a2e3ddf80a6dc24fc5dd2901f6b35baa7648baea0a4e12cd2b4c8ee11a42d54e"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.216.197.139:3001",
+    "native_address": "0xe6b8131b1d774a7d70b3784a5aaea27f1123be42",
+    "node": "production-9",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWMqneeTM2fJYxMB8yyZbYnzgVSA9oje3HNoWjApoVRPRj",
+    "rpch_public_key": "0x0366c3e0bb809ccea916f69e33ac37e0199518b544034ade642b2a55b301130fee"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.108.52.164:3001",
+    "native_address": "0xa1aa996869e2f5f76a31c8f6f044500e4feaa57b",
+    "node": "production-10",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWRmgvfP3mLNLGuvhymPc41seneLomGXVQomRus7UdWwom",
+    "rpch_public_key": "0x0264dea9275f644241182530809ed70f16c2173bbae2915b304837b5ac228065ce"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.21.185.184:3001",
+    "native_address": "0x3c8d05cb1641573c0c436cef2afa000ecb78384e",
+    "node": "production-11",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWShrzRYYHfSWtxuWdeCfbVsCaSqHtRrZ3AE5ggNRUVz2M",
+    "rpch_public_key": "0x021a1c074500a1d26a6efd5ea45a49de59ab5ffedbaa094fa1cb7448b4ebb6eda7"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.108.210.70:3001",
+    "native_address": "0x4c4c6c135a3c6123235ff290447977df7af12c02",
+    "node": "production-12",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWPkHoRLPTgBt8SFSirXQCS2D35zuPp8cXrLDBDrzNNwZQ",
+    "rpch_public_key": "0x02897c81e79ffc0352fcf869b8aca7c8657312f98caf586b7d9b629df6fadaa9d2"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.216.210.22:3001",
+    "native_address": "0x688e31178adbcda710e185edddceb0701fa37178",
+    "node": "production-13",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWGX2LfSJPpk9JcYxoPkEZrE4ggLCZCqjvfJbYyd2xjuEC",
+    "rpch_public_key": "0x026b2a32e02ada0cc67d977eee066386ea38fbb506b0eb9a5c79c02dd9a9711231"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.109.175.196:3001",
+    "native_address": "0x4a46117d68bcf00171b94b9c864f9acf0a9d67a9",
+    "node": "production-14",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWQX59qx63rF42xrM9LHZk7LesMgAuidNm8sS8nY1nGt2F",
+    "rpch_public_key": "0x0240b963c4b67eaeeded21c3b117f7e2b81f66681bcf224c7d8d5868d9a79f14fc"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://135.181.81.142:3001",
+    "native_address": "0x8f08e270b3c163898eed4e08ed308000fad6d8c2",
+    "node": "production-15",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWEtTiTo22rErHB46vkUmzWZedZHpZA1TVwb5zZHHkzvGR",
+    "rpch_public_key": "0x03a6b261a55981c6aae4b60cc387db8e410eda8f6becc6c09451ebe96174ad7959"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.21.245.19:3001",
+    "native_address": "0x4ab504e3805780637ebb3f25e9b34e928d8e5383",
+    "node": "production-16",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWEtu5hqRHsDc1zxUQSYjcQh33AQNcKT4G52h6gLSChMhB",
+    "rpch_public_key": "0x021c4e1bf340745e09db29ab633c62e72119392fbd8b22e01b9e7a3365f0fbcafb"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.21.158.45:3001",
+    "native_address": "0x263268d17c8f0edaae8948c65a8a0ddd33d497ff",
+    "node": "production-17",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWT3JRcWjJdGT7mKUzhjcEiHr3icazsnjLi3zvEaWmeGFT",
+    "rpch_public_key": "0x02bae464803dc287132fe64259d91ec84b0de4eb7bd20cb98f92d58fcb9b5981c1"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.108.62.69:3001",
+    "native_address": "0xadceb19f40ddc3e8450b44759288d0b61445bfc9",
+    "node": "production-18",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWMwHerbNjxdaBSYHmz9x6Pqcuy8e58DvRdqVzJgdzkHdz",
+    "rpch_public_key": "0x0366c354e4bb7900e1bd66754f93a7d22e9c9a20f583fcfe1019862be02400b36c"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.216.170.194:3001",
+    "native_address": "0x3a0aa960d9adbf5feb9347aba953fdc6da8de9a9",
+    "node": "production-19",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWRS6jYTNuVH8zFdoWpBjr197ct1kFkJDzEzLCQkRbtpsz",
+    "rpch_public_key": "0x02e8dd99bcbbc7b5ecee857f304bb04422e9331a71fab5795a16505794f9a120cc"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.109.128.17:3001",
+    "native_address": "0x6d4a527bde390cf5ca6cd694cabbe26b534ee861",
+    "node": "production-20",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWMCA7XtEb9MCFPM8p8j3nhyFMQZAV32dPbrybaMRyr3M5",
+    "rpch_public_key": "0x02ba68484800d719584864626d7898cc9595e1f97470b2337c87d20e23b4eec4c7"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.216.208.130:3001",
+    "native_address": "0x440cfaa1503680a15b14408e3b8f717d2a021a63",
+    "node": "production-21",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWRQPPHw4mjPYRZsJsNT4bSJ4n7TKj8YryaygqvUjvyWLA",
+    "rpch_public_key": "0x03ecf28c07d5ed7087e0208689fb3fe647c13cf5c10ad926e993683f466e340471"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://95.216.163.105:3001",
+    "native_address": "0x58db70098a4ead32b06fc0388aa924feb7d18ccc",
+    "node": "production-22",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWMTzJTsJmiqfFdYejXtnuxXN1FUD55V38j4fugS2hbU5A",
+    "rpch_public_key": "0x028f76df3e91a63573e12ef97056d4a061dd92d9df2f6859af0a85a18097413633"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://65.109.227.57:3001",
+    "native_address": "0xe19f3f16630c45fcc930f26c166fee50bc23b378",
+    "node": "production-23",
+    "node_type": "exit-node",
+    "peer_id": "12D3KooWNmaPFsmKWXh9WRY7uXhJRnU9MyxmUXL9YcDnVCM5i2xY",
+    "rpch_public_key": "0x030156e459d8b39374271e83f3c67215660ac50a7fc7fe023eb4d1d204cd8686ff"
+},
+{
+    "chain_id": "100",
+    "hoprd_api_endpoint": "http://37.27.20.245:3001",
+    "native_address": "0x5b52b59c7f10af6b65174642891a0c24d02b7e42",
+    "node": "production-24",
+    "node_type": "entry-node",
+    "peer_id": "12D3KooWEoBqo1HtQ3bHjowX6UbhxWXdh3P1FbyFsSTUhawpooZa",
+    "rpch_public_key": "0x031e939f4ca4b1dc1f565ddfb3df8ee9d94ecbf2642d96a86e8de568cfd2c203d5"
+}
+]
