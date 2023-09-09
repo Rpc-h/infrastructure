@@ -20,15 +20,18 @@ endif
 ifneq ($(limit),)
 	specific_hosts=--limit $(limit)
 endif
+ifneq ($(private_key),)
+	private_key_override=--private-key $(private_key)
+endif
 vault=--vault-password-file ./.vault_pass
 tee_log=tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 ansible_inventory=-i "./inventories/$(env)/"
-ansible_playbook=time ansible-playbook $(ansible_inventory) $(vault) $(debug_playbook) $(skipped_tags) $(specific_tags) $(specific_hosts)
+ansible_playbook=time ansible-playbook $(ansible_inventory) $(vault) $(debug_playbook) $(skipped_tags) $(specific_tags) $(specific_hosts) $(private_key_override)
 
 all: help
 
 .PHONY: galaxy
-galaxy: ## Install ansible dependent roles	
+galaxy: ## Install ansible dependent roles
 	ansible-galaxy install --force -r requirements.yaml
 
 .PHONY: install-server
