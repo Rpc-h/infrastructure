@@ -10,4 +10,4 @@
       vars:
         hoprd_identity_file: "{{ environment_name }}/{{ inventory_hostname }}/.hoprd.id"
         hoprd_env_file: "{{ environment_name }}/{{ inventory_hostname }}/.env"
-        hoprd_version: latest
+        hoprd_version: "{{ hoprd_image_tag }}"
