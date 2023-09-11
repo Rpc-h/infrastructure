@@ -7,8 +7,6 @@ This repo holds the configuration for RPCh infrastructure such as:
 
 ## Loki
 
-# Loki Best Techniques for Regexp Search
-
 Loki is a powerful tool for log analysis and searching, and it supports regular expressions (regex) for more advanced log queries. Here are some techniques and tips for using regex with Loki effectively:
 
 1. **Basics of Regex in Loki:**
