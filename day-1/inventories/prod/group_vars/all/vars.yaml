@@ -4,4 +4,4 @@ ansible_ssh_common_args: "-F ./hcloud_ssh_config_rpch_production"
 
 environment_name: "prod"
 
-hoprd_image_tag: latest
+hoprd_image_tag: providence
