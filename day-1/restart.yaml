@@ -1,25 +1,36 @@
-- name: Restart playbook
+- name: Restart entry Nodes
   gather_facts: false
-  hosts: all
+  hosts: entry_node,exit_node
   become: true
-  strategy: free
+  vars:
+    clean_db: false
   tasks:
-    - name: Stop all services
+    - name: Stop Hoprd service
+      ansible.builtin.service:
+        name: "hoprd.service"
+        state: stopped
+        enabled: true
+
+    - name: Remove database
       ansible.builtin.shell:
-        chdir: /root/RPCh/apps/exit-node
-        cmd: docker compose down
-      register: output
+        cmd: rm -rf /opt/hoprd/db
+      when: clean_db == 'true'
 
-    - name: Show results
-      ansible.builtin.debug:
-        var: output
+    - name: Start Hoprd service
+      ansible.builtin.service:
+        name: "hoprd.service"
+        state: started
+        enabled: true
 
-    - name: Start all services
-      ansible.builtin.shell:
-        chdir: /root/RPCh/apps/exit-node
-        cmd: docker compose up -d --build
-      register: output
+- name: Restart exit Nodes
+  gather_facts: false
+  hosts: exit_node
+  become: true
+  tasks:
+    - name: Restart Exit Node service
+      ansible.builtin.service:
+        name: "exit-node.service"
+        state: restarted
+        enabled: true
 
-    - name: Show results
-      ansible.builtin.debug:
-        var: output
+

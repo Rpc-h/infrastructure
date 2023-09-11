@@ -1,8 +1,0 @@
-{
-    "chain_id": "100",
-    "hoprd_api_endpoint": "http://95.217.133.151:3001",
-    "native_address": "0x0de9a4482f6fea7c83d099cbf0e339207c0dd386",
-    "node": "hetzner-staging-23",
-    "peer_id": "12D3KooWQEtGq8DbK6LVLN9UFfYjsxyWAYecEA71x9mf8AU295K9",
-    "rpch_public_key": "0x03c15383d9b740e9508433e94c2c50f163de71a3237931c26cece1f988bf27908d"
-}

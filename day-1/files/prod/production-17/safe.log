@@ -1,0 +1,123 @@
+Successfully changed working directory to /Users/ausias/Documents/github/hoprnet/scripts/../packages/ethereum/contracts!
+No files changed, compilation skipped
+[32mScript ran successfully.[0m
+
+== Return ==
+safe: address 0x557EA89eE847D2894DEC25a43eEa7AC3a6878563
+module: address 0xDBa62118db682209f9B7Bf19FE019323c0dFFdC6
+
+== Logs ==
+  msgSender address: 0xdccc4a8ee2bf3caf5a4ab1cdba1ee7cc04e324dd
+  --safeAddress 0x557EA89eE847D2894DEC25a43eEa7AC3a6878563 --moduleAddress 0xDBa62118db682209f9B7Bf19FE019323c0dFFdC6
+  deployerAddress: 0xdccc4a8ee2bf3caf5a4ab1cdba1ee7cc04e324dd
+  Nodes registered to Network Registry
+  Manager set eligibility on network regsitry
+  msgSender address: 0xdccc4a8ee2bf3caf5a4ab1cdba1ee7cc04e324dd
+  msgSender address: 0xdccc4a8ee2bf3caf5a4ab1cdba1ee7cc04e324dd
+
+==========================
+
+Chain 100
+
+Estimated gas price: 3.000000016 gwei
+
+Estimated total gas used for script: 1887321
+
+Estimated amount required: 0.005661963030197136 ETH
+
+==========================
+
+###
+Finding wallets for all the necessary addresses...
+##
+Sending transactions [0 - 11].
+
+Transactions saved to: /Users/ausias/Documents/github/hoprnet/packages/ethereum/contracts/broadcast/SingleAction.s.sol/100/expressSetupSafeModule-latest.json
+
+##
+Waiting for receipts.
+
+##### xdai
+✅ Hash: 0x7fe9b82a790e5c69551d85c32e5e2d2e6b314c87b7aef56b2b9b4dfcac9f59a6
+Block: 29885305
+Paid: 0.001932462005153232 ETH (644154 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0xf195298cc2f3748d42f519f9f5c6c0a15b786d6ab4161e62ec1e443244800b61
+Block: 29885305
+Paid: 0.000084738000225968 ETH (28246 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x612928adaf9c3b2ce3829f93399a73d3a8ae8fa9fa70da9d241efae5197c554e
+Block: 29885305
+Paid: 0.000473784001263424 ETH (157928 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x9a342dd2794de32726e04a961655683ab27d9af9107bd28b6b832df902d94547
+Block: 29885305
+Paid: 0.000084738000225968 ETH (28246 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x672281b81182f582b4de0e4982a9632bb04e6fb2886a5b0380a4a50575a4605f
+Block: 29885305
+Paid: 0.000233727000623272 ETH (77909 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x921d59053adcf87ca13531db3364642b7c44ad08f599fd682b1d864b257be39a
+Block: 29885305
+Paid: 0.000084738000225968 ETH (28246 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0xad797efddcb0e5acd47401f08d72667cfb329ce40f58934dd0fd84c060fe4ad6
+Block: 29885305
+Paid: 0.000329394000878384 ETH (109798 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0xf2da1143a1b9f2431aae61cc9a8007a43c373f58c5e83d061e7c66ad8f1906a7
+Block: 29885305
+Paid: 0.000217368000579648 ETH (72456 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0xc51d44b5c7cc5d23974ac0f0e576f7f4c38545027cd571fcdfcd2d79bb662904
+Block: 29885305
+Paid: 0.000082851000220936 ETH (27617 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x861b9ead801bd29f6777107ed05f78b498e58a604e72502a9be40416a77721c6
+Block: 29885305
+Paid: 0.000420813001122168 ETH (140271 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x33c9f961d84f267f583fdf7f9c84c3f79578e62cccd0fd0714a49468bcf50931
+Block: 29885305
+Paid: 0.000081987000218632 ETH (27329 gas * 3.000000008 gwei)
+
+
+##### xdai
+✅ Hash: 0x7cc826544429277a1201e75affa3e75c65d1da90389c8ccf576b524e059daaf7
+Block: 29885305
+Paid: 0.000063000000168 ETH (21000 gas * 3.000000008 gwei)
+
+
+Transactions saved to: /Users/ausias/Documents/github/hoprnet/packages/ethereum/contracts/broadcast/SingleAction.s.sol/100/expressSetupSafeModule-latest.json
+
+
+
+==========================
+
+ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
+Total Paid: 0.0040896000109056 ETH (1363200 gas * avg 3.000000008 gwei)
+
+Transactions saved to: /Users/ausias/Documents/github/hoprnet/packages/ethereum/contracts/broadcast/SingleAction.s.sol/100/expressSetupSafeModule-latest.json
+
+Foundry command execution status: exit status: 0

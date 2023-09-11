@@ -2,6 +2,36 @@
 all:
   vars:
     ansible_python_interpreter: /usr/bin/python3
+  children:
+    entry_node:
+      hosts:
+        hetzner-staging-alpha-1:
+        hetzner-staging-alpha-2:
+        hetzner-staging-alpha-3:
+        hetzner-staging-alpha-4:
+        hetzner-staging-alpha-5:
+        hetzner-staging-alpha-6:
+        hetzner-staging-alpha-7:
+        hetzner-staging-alpha-8:
+        hetzner-staging-alpha-9:
+        hetzner-staging-alpha-10:
+    exit_node:
+      hosts:
+        hetzner-staging-alpha-11:
+        hetzner-staging-alpha-12:
+        hetzner-staging-alpha-13:
+        hetzner-staging-alpha-14:
+        hetzner-staging-alpha-15:
+        hetzner-staging-alpha-16:
+        hetzner-staging-alpha-17:
+        hetzner-staging-alpha-18:
+        hetzner-staging-alpha-19:
+        hetzner-staging-alpha-20:
+        hetzner-staging-alpha-21:
+        hetzner-staging-alpha-22:
+        hetzner-staging-alpha-23:
+        hetzner-staging-alpha-24:
+        hetzner-staging-alpha-25:
   hosts:
     hetzner-staging-alpha-1:
     hetzner-staging-alpha-2:

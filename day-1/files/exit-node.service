@@ -1,0 +1,22 @@
+[Unit]
+Description=Exit node
+After=network.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+Restart=always
+RestartSec=30s
+KillMode=process
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=on-failure
+WorkingDirectory=/opt/exit-node
+EnvironmentFile=/opt/exit-node/.env
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+PIDFile=/opt/exit-node/exit-node.pid
+
+[Install]
+WantedBy=default.target

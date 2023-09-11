@@ -1,0 +1,68 @@
+- name: Install Server
+  gather_facts: true
+  hosts: all
+  become: true
+  strategy: free
+  tasks:
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - lsb-release
+          - gnupg
+          - git
+        state: latest
+        update_cache: true
+      tags:
+        - install
+    - name: Add signing key
+      ansible.builtin.apt_key:
+        url: "https://download.docker.com/linux/debian/gpg"
+        state: present
+      tags:
+        - install
+    - name: Add repository into sources list
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable"
+        state: present
+        filename: docker
+      tags:
+        - install
+    - name: Install Docker
+      ansible.builtin.apt:
+        name:
+          - docker-ce=5:24.0.0-1~debian.11~bullseye
+          - docker-ce-cli=5:24.0.0-1~debian.11~bullseye
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
+      tags:
+        - install
+    - name: Install promtail
+      ansible.builtin.shell:
+        cmd: |
+          curl -s -O -L https://github.com/grafana/loki/releases/download/v2.8.4/promtail-linux-amd64.zip
+          apt-get install unzip
+          unzip promtail-linux-amd64.zip
+          mv promtail-linux-amd64 /usr/local/bin/promtail
+          chmod a+x /usr/local/bin/promtail
+          mkdir -p /etc/promtail
+    - name: Configure and upload promtail configuration
+      template:
+        src: config.j2
+        dest: /etc/promtail/config.yaml
+    - name: Upload promtail service
+      ansible.builtin.copy:
+        src: promtail.service
+        dest: /etc/systemd/system/promtail.service
+    - name: Reload systemctl
+      ansible.builtin.systemd:
+        daemon_reload: true
+    - name: Start Promtail service
+      ansible.builtin.service:
+        name: "promtail.service"
+        state: restarted
+        enabled: true

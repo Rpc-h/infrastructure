@@ -20,22 +20,44 @@ endif
 ifneq ($(limit),)
 	specific_hosts=--limit $(limit)
 endif
+ifneq ($(private_key),)
+	private_key_override=--private-key $(private_key)
+endif
 vault=--vault-password-file ./.vault_pass
 tee_log=tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 ansible_inventory=-i "./inventories/$(env)/"
-ansible_playbook=time ansible-playbook $(ansible_inventory) $(vault) $(debug_playbook) $(skipped_tags) $(specific_tags) $(specific_hosts)
+ansible_playbook=time ansible-playbook $(ansible_inventory) $(vault) $(debug_playbook) $(skipped_tags) $(specific_tags) $(specific_hosts) $(private_key_override)
 
 all: help
 
-.PHONY: install
-install: ensure-env-variable-is-set $(ansible-playbook-args)
-install: ## Install Hoprd on servers
-	$(ansible_playbook) ./install.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+.PHONY: galaxy
+galaxy: ## Install ansible dependent roles
+	ansible-galaxy install --force -r requirements.yaml
+
+.PHONY: install-server
+install-server: ensure-env-variable-is-set $(ansible-playbook-args)
+install-server: ## Install servers components
+	$(ansible_playbook) ./install-server.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: install-hoprd
+install-hoprd: ensure-env-variable-is-set $(ansible-playbook-args)
+install-hoprd: ## Install Hoprd service
+	$(ansible_playbook) ./install-hoprd.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: install-exit-node
+install-exit-node: ensure-env-variable-is-set $(ansible-playbook-args)
+install-exit-node: ## Install Rpch Exit Node service
+	$(ansible_playbook) ./install-exit-node.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+
+.PHONY: restart
+restart: ensure-env-variable-is-set $(ansible-playbook-args)
+restart: ## Restart Hoprd on servers
+	$(ansible_playbook) --extra-vars "clean_db=$(clean)" ./restart.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
 .PHONY: show
 show: ensure-env-variable-is-set $(ansible-playbook-args)
 show: ## Install Hoprd on servers
-	$(ansible_playbook) ./show.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+	$(ansible_playbook) --ask-become-pass ./show.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
 
 # The ansible .vault_pass can be downloaded from Bitwarden by name `Ansible Vault Pass - Rpch`

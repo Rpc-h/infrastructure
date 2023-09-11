@@ -1,0 +1,88 @@
+
+# Add this line to your ~/.ssh/config file
+# 
+# Include <full_github_repo_path>/day-1/hcloud_ssh_config_rpch_production
+# 
+
+Host production-*
+     User root
+     Port 22
+     StrictHostKeyChecking no
+     IdentitiesOnly yes
+
+Host production-0
+     HostName 95.217.237.141
+
+Host production-1
+     HostName 135.181.92.114
+
+Host production-2
+     HostName 135.181.80.245
+
+Host production-3
+     HostName 135.181.107.160
+
+Host production-4
+     HostName 135.181.82.212
+
+Host production-5
+     HostName 95.217.215.176
+
+Host production-6
+     HostName 65.108.216.137
+
+Host production-7
+     HostName 65.109.161.241
+
+Host production-8
+     HostName 65.109.164.194
+
+Host production-9
+     HostName 95.216.197.139
+
+Host production-10
+     HostName 65.108.52.164
+
+Host production-11
+     HostName 65.21.185.184
+
+Host production-12
+     HostName 65.108.210.70
+
+Host production-13
+     HostName 95.216.210.22
+
+Host production-14
+     HostName 65.109.175.196
+
+Host production-15
+     HostName 135.181.81.142
+
+Host production-16
+     HostName 65.21.245.19
+
+Host production-17
+     HostName 65.21.158.45
+
+Host production-18
+     HostName 65.108.62.69
+
+Host production-19
+     HostName 95.216.170.194
+
+Host production-20
+     HostName 65.109.128.17
+
+Host production-21
+     HostName 95.216.208.130
+
+Host production-22
+     HostName 95.216.163.105
+
+Host production-23
+     HostName 65.109.227.57
+
+Host production-24
+     HostName 37.27.20.245
+
+
