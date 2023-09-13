@@ -24,9 +24,9 @@
         state: started
         enabled: true
 
-    - name: Pause for 5 minutes allow hoprd start
+    - name: Pause for 3 minutes allow hoprd start
       ansible.builtin.pause:
-        minutes: 5
+        minutes: 3
       tags:
         - pause
 
