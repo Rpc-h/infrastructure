@@ -66,7 +66,6 @@ all:
             production-19:
         exit_node_c:
           hosts:
-            production-19:
             production-20:
             production-21:
             production-22:
