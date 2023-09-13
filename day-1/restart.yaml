@@ -1,9 +1,11 @@
 - name: Restart entry Nodes
   gather_facts: false
-  hosts: entry_node,exit_node
+  hosts: entry_node,exit_node,entry_node_a,entry_node_b,entry_node_c,exit_node_a,exit_node_b,exit_node_c
   become: true
   vars:
     clean_db: false
+  tags:
+    - entry_node
   tasks:
     - name: Stop Hoprd service
       ansible.builtin.service:
@@ -22,9 +24,15 @@
         state: started
         enabled: true
 
+    - name: Pause for 3 minutes allow hoprd start
+      ansible.builtin.pause:
+        minutes: 3
+      tags:
+        - pause
+
 - name: Restart exit Nodes
   gather_facts: false
-  hosts: exit_node
+  hosts: exit_node,exit_node_a,exit_node_b,exit_node_c
   become: true
   tasks:
     - name: Restart Exit Node service

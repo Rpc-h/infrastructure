@@ -15,6 +15,23 @@ all:
         production-7:
         production-8:
         production-9:
+      children:
+        entry_node_a:
+          hosts:
+            production-0:
+            production-1:
+            production-2:
+            production-3:
+        entry_node_b:
+          hosts:
+            production-4:
+            production-5:
+            production-6:
+        entry_node_c:
+          hosts:
+            production-7:
+            production-8:
+            production-9:
     exit_node:
       hosts:
         production-10:
@@ -32,6 +49,28 @@ all:
         production-22:
         production-23:
         production-24:
+      children:
+        exit_node_a:
+          hosts:
+            production-10:
+            production-11:
+            production-12:
+            production-13:
+            production-14:
+        exit_node_b:
+          hosts:
+            production-15:
+            production-16:
+            production-17:
+            production-18:
+            production-19:
+        exit_node_c:
+          hosts:
+            production-20:
+            production-21:
+            production-22:
+            production-23:
+            production-24:
   hosts:
     production-0:
     production-1:
