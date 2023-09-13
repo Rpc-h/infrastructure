@@ -4,6 +4,8 @@
   become: true
   vars:
     clean_db: false
+  tags:
+    - entry_node
   tasks:
     - name: Stop Hoprd service
       ansible.builtin.service:
@@ -21,6 +23,12 @@
         name: "hoprd.service"
         state: started
         enabled: true
+
+    - name: Pause for 5 minutes allow hoprd start
+      ansible.builtin.pause:
+        minutes: 5
+      tags:
+        - pause
 
 - name: Restart exit Nodes
   gather_facts: false
