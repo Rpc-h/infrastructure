@@ -13,6 +13,15 @@ make install-hoprd env=staging debug=true limit=hetzner-staging-alpha-4
 make restart env=staging clean=false limit=hetzner-staging-alpha-11
 make restart env=staging clean=true
 
+
+make restart env=prod limit=entry_node_a
+make restart env=prod limit=exit_node_a
+make restart env=prod limit=entry_node_b
+make restart env=prod limit=exit_node_b
+make restart env=prod limit=entry_node_c
+make restart env=prod limit=exit_node_c
+
+
 make encrypt env=staging
 make decrypt env=staging
 make show env=staging
