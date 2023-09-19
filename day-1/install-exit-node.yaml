@@ -3,8 +3,6 @@
   hosts: exit_node
   become: true
   strategy: free
-  vars:
-    rpch_exit_node_version: e22211a
   tasks:
     - name: Create app directory
       ansible.builtin.file:
