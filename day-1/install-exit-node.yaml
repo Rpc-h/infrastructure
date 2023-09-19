@@ -4,8 +4,7 @@
   become: true
   strategy: free
   vars:
-    rpch_exit_node_version: latest
-    rpch_data_dir: /app/db
+    rpch_exit_node_version: e22211a
   tasks:
     - name: Create app directory
       ansible.builtin.file:
