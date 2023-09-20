@@ -1,9 +1,6 @@
 # docker-compose file that allows RPCh exit node to run alongside HOPRd
 version: "3"
 
-volumes:
-  exit-node-data:
-
 networks:
   hoprnet:
     name: hoprnet
@@ -15,8 +12,6 @@ services:
     container_name: exit-node
     hostname: exit-node
     image: europe-west6-docker.pkg.dev/rpch-375921/rpch/exit-node:{{ rpch_exit_node_version }}
-    volumes:
-      - exit-node-data:{{ rpch_data_dir }}
     env_file:
         - .env-default
         - .env
@@ -27,4 +22,3 @@ services:
       options:
         max-size: "100m"
         max-file: "7"
-
