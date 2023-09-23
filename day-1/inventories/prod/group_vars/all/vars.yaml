@@ -6,4 +6,4 @@ environment_name: "prod"
 
 hoprd_image_tag: providence
 
-rpch_exit_node_version: latest
+rpch_exit_node_version: 0.4.0
