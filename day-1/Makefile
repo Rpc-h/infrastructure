@@ -67,7 +67,7 @@ decrypt: ## Install Hoprd on servers
 ifeq ($(env),staging)
 	for i in {1..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-alpha-$$i/.env ./files/$(env)/hetzner-$(env)-alpha-$$i/.env-rpch; done
 else
-	for i in {1..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-$$i/.env ./files/$(env)/hetzner-$(env)-$$i/.env-rpch; done
+	for i in {0..24}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/production-$$i/.env ./files/$(env)/production-$$i/.env-rpch; done
 endif
 
 .PHONY: encrypt
@@ -76,7 +76,7 @@ encrypt: ## Install Hoprd on servers
 ifeq ($(env),staging)
 	for i in {1..25}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-alpha-$$i/.env ./files/$(env)/hetzner-$(env)-alpha-$$i/.env-rpch; done
 else
-	for i in {1..25}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-$$i/.env ./files/$(env)/hetzner-$(env)-$$i/.env-rpch; done
+	for i in {0..24}; do ansible-vault encrypt --vault-password-file .vault_pass ./files/$(env)/production-$$i/.env ./files/$(env)/production-$$i/.env-rpch; done
 endif
 
 
