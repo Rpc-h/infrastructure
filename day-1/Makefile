@@ -64,7 +64,11 @@ show: ## Install Hoprd on servers
 .PHONY: decrypt
 decrypt: ensure-env-variable-is-set
 decrypt: ## Install Hoprd on servers
+ifeq ($(env),staging)
+	for i in {1..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-alpha-$$i/.env ./files/$(env)/hetzner-$(env)-alpha-$$i/.env-rpch; done
+else
 	for i in {1..25}; do ansible-vault decrypt --vault-password-file .vault_pass ./files/$(env)/hetzner-$(env)-$$i/.env ./files/$(env)/hetzner-$(env)-$$i/.env-rpch; done
+endif
 
 .PHONY: encrypt
 encrypt: ensure-env-variable-is-set
