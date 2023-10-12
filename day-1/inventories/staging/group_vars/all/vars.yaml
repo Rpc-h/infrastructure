@@ -6,4 +6,4 @@ environment_name: "staging"
 
 hoprd_image_tag: latest
 
-rpch_exit_node_version: 0.8.1
+rpch_exit_node_version: 0.8.2
