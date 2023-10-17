@@ -4,5 +4,5 @@ ansible_ssh_common_args: "-F ./hcloud_ssh_config_rpch_staging"
 
 environment_name: "staging"
 
-hoprd_image_tag: latest
+hoprd_image_tag: providence
 rpch_exit_node_version: 0.5.0

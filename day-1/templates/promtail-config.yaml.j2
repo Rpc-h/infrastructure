@@ -15,7 +15,8 @@ scrape_configs:
         refresh_interval: 5s
     pipeline_stages:
       - static_labels:
-          hostname: "{{ inventory_hostname }}"
+          ip: "{{ ansible_default_ipv4.address }}"
+          node_name: "{{ ansible_hostname }}"
     relabel_configs:
       - source_labels: [ '__meta_docker_container_name' ]
         regex: '/(.*)'
