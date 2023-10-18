@@ -2,7 +2,6 @@
   gather_facts: true
   hosts: all
   become: true
-  strategy: free
   tasks:
     - name: Install required packages
       ansible.builtin.apt:
@@ -41,28 +40,18 @@
         update_cache: true
       tags:
         - install
-    - name: Install promtail
-      ansible.builtin.shell:
-        cmd: |
-          curl -s -O -L https://github.com/grafana/loki/releases/download/v2.8.4/promtail-linux-amd64.zip
-          apt-get install unzip
-          unzip promtail-linux-amd64.zip
-          mv promtail-linux-amd64 /usr/local/bin/promtail
-          chmod a+x /usr/local/bin/promtail
-          mkdir -p /etc/promtail
-    - name: Configure and upload promtail configuration
+    - name: Install Promtail
+      ansible.builtin.include_role:
+        name: patrickjahns.promtail
+      vars:
+        promtail_config_file: /etc/promtail/config.yaml
+        promtail_system_user: root
+        promtail_system_group: root
+      tags:
+        - promtail
+    - name: Configure Promtail
       template:
-        src: config.j2
+        src: promtail-config.yaml.j2
         dest: /etc/promtail/config.yaml
-    - name: Upload promtail service
-      ansible.builtin.copy:
-        src: promtail.service
-        dest: /etc/systemd/system/promtail.service
-    - name: Reload systemctl
-      ansible.builtin.systemd:
-        daemon_reload: true
-    - name: Start Promtail service
-      ansible.builtin.service:
-        name: "promtail.service"
-        state: restarted
-        enabled: true
+      tags:
+        - promtail
