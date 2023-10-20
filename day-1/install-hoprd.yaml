@@ -11,23 +11,7 @@
         name: hopr.hoprd
       vars:
         hoprd_identity_file: "{{ environment_name }}/{{ inventory_hostname }}/.hoprd.id"
-        hoprd_env_file: "{{ environment_name }}/{{ inventory_hostname }}/.env"
-        hoprd_version: "{{ hoprd_image_tag }}"
-      tags:
-        - hoprd
-    - name: "Copy config file"
-      ansible.builtin.copy:
-        src: "hoprd-config.yaml"
-        dest: "/opt/hoprd/config.yaml"
-        owner: "root"
-        group: "root"
-        mode: "440"
 
-    - name: Restart Hoprd service
-      ansible.builtin.service:
-        name: "hoprd.service"
-        state: restarted
-        enabled: true
       tags:
         - hoprd
 
