@@ -11,7 +11,6 @@ RestartSec=30s
 KillMode=process
 KillSignal=SIGINT
 TimeoutStopSec=90
-Restart=on-failure
 WorkingDirectory=/opt/exit-node
 EnvironmentFile=/opt/exit-node/.env
 ExecStart=/usr/bin/docker compose up
