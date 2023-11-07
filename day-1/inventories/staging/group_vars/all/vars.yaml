@@ -6,7 +6,7 @@ environment_name: "staging"
 
 hoprd_version: 2.0.1
 hoprd_network: rotsee
-rpch_exit_node_version: 0.9.1
+rpch_exit_node_version: 0.10.0
 
 hoprd:
   config:
@@ -17,6 +17,7 @@ hoprd:
         network_quality_threshold: 0.6
         new_channel_stake: '1000000 HOPR'  # 1000 tickets
         minimum_node_balance: '10000000 HOPR' # 10x new channel stake
+        min_network_size_samples: 20
       autoFunding:
         enabled: true
         funding_amount: '1000000 HOPR' # 1000 tickets
