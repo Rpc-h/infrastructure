@@ -5,4 +5,4 @@ environment_name: "prod"
 
 hoprd_version: providence
 hoprd_network: dufour
-rpch_exit_node_version: 0.9.3
+rpch_exit_node_version: 0.12.0
