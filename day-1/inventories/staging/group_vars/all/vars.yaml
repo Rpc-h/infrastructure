@@ -7,7 +7,7 @@ environment_name: "staging"
 
 hoprd_version: providence-latest
 hoprd_network: rotsee
-rpch_exit_node_version: 1.1.0
+rpch_exit_node_version: 1.1.1
 
 hoprd:
   config:
