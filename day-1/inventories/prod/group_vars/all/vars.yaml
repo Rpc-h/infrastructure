@@ -3,6 +3,29 @@ ansible_ssh_common_args: "-F ./hcloud_ssh_config_rpch_production"
 
 environment_name: "prod"
 
-hoprd_version: providence
+hoprd_version: 2.0.6
 hoprd_network: dufour
 rpch_exit_node_version: 1.1.1
+
+hoprd:
+  config:
+    strategy:
+      promiscuous:
+        enabled: false
+        max_channels: 10
+        network_quality_threshold: 0.5
+        new_channel_stake: "1000000 HOPR"  # 1000 tickets
+        minimum_node_balance: '10000000 HOPR' # 10x new channel stake
+        min_network_size_samples: 20
+      autoFunding:
+        enabled: false
+        funding_amount: '1000000 HOPR' # 1000 tickets
+        min_stake_threshold: '100000 HOPR' # 100 tickets
+      aggregating:
+        enabled: false
+        aggregation_threshold: 100000
+      autoRedeeming:
+        enabled: false
+        redeem_only_aggregated: true
+    network_options:
+      quality_avg_window_size: 50
