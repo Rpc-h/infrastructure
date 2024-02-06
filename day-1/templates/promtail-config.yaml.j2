@@ -6,8 +6,10 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  #- url: "https://loki.rpch.tech/loki/api/v1/push"
   - url: "https://loki.prod.hoprtech.net/loki/api/v1/push"
+    basic_auth:
+      username: "{{ loki_user }}"
+      password: "{{ loki_password }}"
 
 scrape_configs:
   - job_name: system
