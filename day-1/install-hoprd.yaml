@@ -25,8 +25,6 @@
       set_fact:
         peer_id: "{{ hoprd_json  | community.general.json_query('\".hoprd.id\".peer_id') }}"
         native_address: "{{ hoprd_json  | community.general.json_query('\".hoprd.id\".native_address') }}"
-        safe_address: "{{ hoprd_json  | community.general.json_query('safe_address') }}"
-        module_address: "{{ hoprd_json  | community.general.json_query('module_address') }}"
       tags:
         - promtail
 
@@ -35,8 +33,8 @@
         block_labels: |
           peer_id: {{ peer_id }}
           native_address: {{ native_address  }}
-          safe_address: {{ safe_address }}
-          module_address: {{ module_address }}
+          safe_address: {{ hoprd_safe_address }}
+          module_address: {{ hoprd_module_address }}
       tags:
         - promtail
 
