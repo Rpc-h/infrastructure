@@ -5,7 +5,7 @@ environment_name: "prod"
 
 hoprd_version: 2.0.6
 hoprd_network: dufour
-rpch_exit_node_version: 1.1.1
+rpch_exit_node_version: 1.2.0
 
 hoprd:
   config:
