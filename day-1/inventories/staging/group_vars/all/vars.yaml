@@ -5,29 +5,34 @@ ansible_ssh_common_args: "-F ./hcloud_ssh_config_rpch_staging"
 
 environment_name: "staging"
 
-hoprd_version: providence-latest
-hoprd_network: rotsee
+hoprd_version: saint-louis-latest
 rpch_exit_node_version: 1.2.0
 
-hoprd:
-  config:
+hoprd_config: |
+  hopr:
+    chain:
+      network: rotsee
+      provider: https://primary.gnosis-chain.rpc.hoprtech.net
     strategy:
-      promiscuous:
-        enabled: true
-        max_channels: 10
-        network_quality_threshold: 0.5
-        new_channel_stake: '1000000 HOPR'  # 1000 tickets
-        minimum_node_balance: '10000000 HOPR' # 10x new channel stake
-        min_network_size_samples: 20
-      autoFunding:
-        enabled: true
-        funding_amount: '1000000 HOPR' # 1000 tickets
-        min_stake_threshold: '100000 HOPR' # 100 tickets
-      aggregating:
-        enabled: true
-        aggregation_threshold: 100000
-      autoRedeeming:
-        enabled: true
-        redeem_only_aggregated: true
-    network_options:
-      quality_avg_window_size: 50
+      on_fail_continue: true
+      allow_recursive: false
+      finalize_channel_closure: true
+      strategies:
+        - !Promiscuous
+          max_channels: 10
+          network_quality_threshold: 0.5
+          new_channel_stake: "1000000 HOPR"
+          minimum_node_balance: "10000000 HOPR"
+          min_network_size_samples: 20
+          enforce_max_channels: true
+          minimum_peer_version: ">=2.0.0"
+        - !AutoFunding
+          funding_amount: "1000000 HOPR"
+          min_stake_threshold: "100000 HOPR"
+        - !Aggregating
+          aggregation_threshold: 100000
+          unrealized_balance_ratio: 0.9
+          aggregation_timeout: 60
+          aggregate_on_channel_close: true
+        - !AutoRedeeming
+          redeem_only_aggregated: True
