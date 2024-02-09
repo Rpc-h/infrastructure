@@ -2,7 +2,6 @@
 .terraform.lock.hcl
 .terraform.tfstate.lock.info
 terraform.*
-.envrc
 tmp
 day-1/.vault_pass
 day-1/ansible-log*.log
