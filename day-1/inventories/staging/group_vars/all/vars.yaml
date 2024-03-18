@@ -12,7 +12,7 @@ hoprd_config: |
   hopr:
     chain:
       network: rotsee
-      provider: https://primary.gnosis-chain.rpc.hoprtech.net
+      provider: https://gnosis-provider.rpch.tech
     strategy:
       on_fail_continue: true
       allow_recursive: false
