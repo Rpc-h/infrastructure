@@ -1,11 +1,11 @@
 - name: Install playbook
   gather_facts: true
-  hosts: exit_node
+  hosts: phttp_exit_app
   become: true
   tasks:
     - name: Create app directory
       ansible.builtin.file:
-        path: /opt/exit-node
+        path: /opt/phttp-exit-app
         state: directory
         mode: 0777
     - name: "Copy files"
@@ -17,32 +17,32 @@
         mode: "{{ item.mode }}"
       with_items:
         - src: "{{ environment_name }}/{{ inventory_hostname }}/.env-rpch"
-          dest: "/opt/exit-node/.env"
+          dest: "/opt/phttp-exit-app/.env"
           owner: root
           group: root
           mode: "400"
         - src: ".env-rpch-default"
-          dest: "/opt/exit-node/.env-default"
+          dest: "/opt/phttp-exit-app/.env-default"
           owner: root
           group: root
           mode: "400"
-        - src: "exit-node.service"
-          dest: "/etc/systemd/system/exit-node.service"
+        - src: "phttp-exit-app.service"
+          dest: "/etc/systemd/system/phttp-exit-app.service"
           owner: root
           group: root
           mode: "0644"
     - name: Apply docker-compose
       ansible.builtin.template:
         src: docker-compose.yaml.j2
-        dest: "/opt/exit-node/docker-compose.yaml"
+        dest: "/opt/phttp-exit-app/docker-compose.yaml"
         owner: root
         group: root
         mode: "0640"
     - name: reload systemctl
       ansible.builtin.systemd:
         daemon_reload: true
-    - name: Start Exit Node service
+    - name: Start pHTTP exit app service
       ansible.builtin.service:
-        name: "exit-node.service"
+        name: "phttp-exit-app.service"
         state: restarted
         enabled: true

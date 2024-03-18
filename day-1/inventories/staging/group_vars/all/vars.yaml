@@ -6,7 +6,7 @@ ansible_ssh_common_args: "-F ./hcloud_ssh_config_rpch_staging"
 environment_name: "staging"
 
 hoprd_version: saint-louis-latest
-rpch_exit_node_version: pr-1
+phttp_exit_app_version: pr-1
 
 hoprd_config: |
   hopr:

@@ -1,5 +1,5 @@
 [Unit]
-Description=Exit node
+Description=pHTTP exit app
 After=network.target
 
 [Service]
@@ -11,11 +11,11 @@ RestartSec=30s
 KillMode=process
 KillSignal=SIGINT
 TimeoutStopSec=90
-WorkingDirectory=/opt/exit-node
-EnvironmentFile=/opt/exit-node/.env
+WorkingDirectory=/opt/phttp-exit-app
+EnvironmentFile=/opt/phttp-exit-app/.env
 ExecStart=/usr/bin/docker compose up
 ExecStop=/usr/bin/docker compose down
-PIDFile=/opt/exit-node/exit-node.pid
+PIDFile=/opt/phttp-exit-app/phttp-exit-app.pid
 
 [Install]
 WantedBy=default.target

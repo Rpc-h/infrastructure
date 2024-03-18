@@ -32,7 +32,7 @@ all:
             hetzner-staging-alpha-8:
             hetzner-staging-alpha-9:
             hetzner-staging-alpha-10:
-    exit_node:
+    phttp_exit_app:
       hosts:
         hetzner-staging-alpha-11:
         hetzner-staging-alpha-12:
@@ -50,20 +50,20 @@ all:
         hetzner-staging-alpha-24:
         hetzner-staging-alpha-25:
       children:
-        exit_node_a:
+        phttp_exit_app_a:
           hosts:
             hetzner-staging-alpha-11:
             hetzner-staging-alpha-12:
             hetzner-staging-alpha-13:
             hetzner-staging-alpha-14:
-        exit_node_b:
+        phttp_exit_app_b:
           hosts:
             hetzner-staging-alpha-15:
             hetzner-staging-alpha-16:
             hetzner-staging-alpha-17:
             hetzner-staging-alpha-18:
             hetzner-staging-alpha-19:
-        exit_node_c:
+        phttp_exit_app_c:
           hosts:
             hetzner-staging-alpha-20:
             hetzner-staging-alpha-21:
