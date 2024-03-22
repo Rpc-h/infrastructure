@@ -44,10 +44,10 @@ install-hoprd: ensure-env-variable-is-set $(ansible-playbook-args)
 install-hoprd: ## Install Hoprd service
 	$(ansible_playbook) ./install-hoprd.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
-.PHONY: install-exit-node
-install-exit-node: ensure-env-variable-is-set $(ansible-playbook-args)
-install-exit-node: ## Install Rpch Exit Node service
-	$(ansible_playbook) ./install-exit-node.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
+.PHONY: install-phttp-exit-app
+install-phttp-exit-app: ensure-env-variable-is-set $(ansible-playbook-args)
+install-phttp-exit-app: ## Install pHTTP exit app service
+	$(ansible_playbook) ./install-phttp-exit-app.yaml | tee ansible-log-`date +%Y%m%d-%H%M%S`.log
 
 .PHONY: restart
 restart: ensure-env-variable-is-set $(ansible-playbook-args)

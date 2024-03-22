@@ -1,6 +1,6 @@
 - name: Restart entry Nodes
   gather_facts: false
-  hosts: entry_node,exit_node,entry_node_a,entry_node_b,entry_node_c,exit_node_a,exit_node_b,exit_node_c
+  hosts: entry_node,phttp_exit_app,entry_node_a,entry_node_b,entry_node_c,phttp_exit_app_a,phttp_exit_app_b,phttp_exit_app_c
   become: true
   vars:
     clean_db: false
@@ -30,15 +30,13 @@
       tags:
         - pause
 
-- name: Restart exit Nodes
+- name: Restart pHTTP exit apps
   gather_facts: false
-  hosts: exit_node,exit_node_a,exit_node_b,exit_node_c
+  hosts: phttp_exit_app,phttp_exit_app_a,phttp_exit_app_b,phttp_exit_app_c
   become: true
   tasks:
-    - name: Restart Exit Node service
+    - name: Restart pHTTP exit app service
       ansible.builtin.service:
-        name: "exit-node.service"
+        name: "phttp_exit_app.service"
         state: restarted
         enabled: true
-
-

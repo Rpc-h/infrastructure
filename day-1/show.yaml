@@ -1,6 +1,6 @@
 - name: Show Environment Config
   gather_facts: true
-  hosts: entry_node,exit_node
+  hosts: entry_node,phttp_exit_app
   tasks:
     - name: "Read variables"
       ansible.builtin.set_fact:

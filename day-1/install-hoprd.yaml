@@ -1,6 +1,6 @@
 - name: Install Hoprd
   gather_facts: true
-  hosts: entry_node,exit_node
+  hosts: entry_node,phttp_exit_app
   become: true
   tasks:
     - name: Get VM index
@@ -29,7 +29,7 @@
         - promtail
 
     - name: Block metadata
-      set_fact: 
+      set_fact:
         block_labels: |
           peer_id: {{ peer_id }}
           native_address: {{ native_address  }}
@@ -54,4 +54,3 @@
         enabled: true
       tags:
         - promtail
-

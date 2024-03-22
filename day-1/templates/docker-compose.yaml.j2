@@ -1,22 +1,22 @@
-# docker-compose file that allows RPCh exit node to run alongside HOPRd
+# docker-compose file that allows pHTTP exit app to run alongside HOPRd
 version: "3"
 
 networks:
   hoprnet:
     name: hoprnet
 services:
-  exit-node:
+  phttp-exit-app:
     restart: always
     mem_reservation: 1g
     mem_limit: 1g
-    container_name: exit-node
-    hostname: exit-node
-    image: europe-west6-docker.pkg.dev/rpch-375921/rpch/exit-node:{{ rpch_exit_node_version }}
+    container_name: phttp-exit-app
+    hostname: phttp-exit-app
+    image: europe-west3-docker.pkg.dev/hoprassociation/docker-images/phttp-exit-app:{{ phttp_exit_app_version }}
     env_file:
         - .env-default
         - .env
     volumes:
-        - '/opt/exit-node/db:/app/db'
+        - '/opt/phttp-exit-app/db:/app/db'
     networks:
       - hoprnet
     logging:
