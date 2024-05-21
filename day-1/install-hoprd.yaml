@@ -1,6 +1,6 @@
 - name: Install Hoprd
   gather_facts: true
-  hosts: entry_node,phttp_exit_app
+  hosts: all
   become: true
   tasks:
     - name: Get VM index
@@ -15,42 +15,42 @@
       tags:
         - hoprd
 
-    - name: Load Hoprd Json
-      set_fact:
-        hoprd_json: "{{ lookup('template','files/' + environment_name + '/' + inventory_hostname + '/hoprd.json') | from_json  }}"
-      tags:
-        - promtail
+    # - name: Load Hoprd Json
+    #   set_fact:
+    #     hoprd_json: "{{ lookup('template','files/' + environment_name + '/' + inventory_hostname + '/hoprd.json') | from_json  }}"
+    #   tags:
+    #     - promtail
 
-    - name: Load metadata
-      set_fact:
-        peer_id: "{{ hoprd_json  | community.general.json_query('\".hoprd.id\".peer_id') }}"
-        native_address: "{{ hoprd_json  | community.general.json_query('\".hoprd.id\".native_address') }}"
-      tags:
-        - promtail
+    # - name: Load metadata
+    #   set_fact:
+    #     peer_id: "{{ hoprd_json  | community.general.json_query('\".hoprd.id\".peer_id') }}"
+    #     native_address: "{{ hoprd_json  | community.general.json_query('\".hoprd.id\".native_address') }}"
+    #   tags:
+    #     - promtail
 
-    - name: Block metadata
-      set_fact:
-        block_labels: |
-          peer_id: {{ peer_id }}
-          native_address: {{ native_address  }}
-          safe_address: {{ hoprd_safe_address }}
-          module_address: {{ hoprd_module_address }}
-      tags:
-        - promtail
+    # - name: Block metadata
+    #   set_fact:
+    #     block_labels: |
+    #       peer_id: {{ peer_id }}
+    #       native_address: {{ native_address  }}
+    #       safe_address: {{ hoprd_safe_address }}
+    #       module_address: {{ hoprd_module_address }}
+    #   tags:
+    #     - promtail
 
-    - name: Customize Promtail
-      ansible.builtin.blockinfile:
-        path: /etc/promtail/config.yaml
-        marker: "          ## {mark} ANSIBLE MANAGED BLOCK "
-        insertafter: "static_labels"
-        block: "{{ block_labels | indent(width=10, first=True)}}"
-      tags:
-        - promtail
+    # - name: Customize Promtail
+    #   ansible.builtin.blockinfile:
+    #     path: /etc/promtail/config.yaml
+    #     marker: "          ## {mark} ANSIBLE MANAGED BLOCK "
+    #     insertafter: "static_labels"
+    #     block: "{{ block_labels | indent(width=10, first=True)}}"
+    #   tags:
+    #     - promtail
 
-    - name: Restart Promtail service
-      ansible.builtin.service:
-        name: "promtail.service"
-        state: restarted
-        enabled: true
-      tags:
-        - promtail
+    # - name: Restart Promtail service
+    #   ansible.builtin.service:
+    #     name: "promtail.service"
+    #     state: restarted
+    #     enabled: true
+    #   tags:
+    #     - promtail

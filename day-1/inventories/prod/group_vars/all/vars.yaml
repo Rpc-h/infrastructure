@@ -3,29 +3,38 @@ ansible_ssh_common_args: "-F ./hcloud_ssh_config_rpch_production"
 
 environment_name: "prod"
 
-hoprd_version: 2.0.6
+hoprd_version: 2.1.0
 hoprd_network: dufour
-rpch_exit_node_version: 1.2.0
+# rpch_exit_node_version: 1.2.0
 
-hoprd:
-  config:
+hoprd_config: |
+  hopr:
+    chain:
+      announce: true
+      network: dufour
+      provider: https://gnosis.rpc-provider.prod.hoprnet.link
     strategy:
-      promiscuous:
-        enabled: false
-        max_channels: 10
-        network_quality_threshold: 0.5
-        new_channel_stake: "1000000 HOPR"  # 1000 tickets
-        minimum_node_balance: '10000000 HOPR' # 10x new channel stake
-        min_network_size_samples: 20
-      autoFunding:
-        enabled: false
-        funding_amount: '1000000 HOPR' # 1000 tickets
-        min_stake_threshold: '100000 HOPR' # 100 tickets
-      aggregating:
-        enabled: false
-        aggregation_threshold: 100000
-      autoRedeeming:
-        enabled: false
-        redeem_only_aggregated: true
-    network_options:
-      quality_avg_window_size: 50
+      on_fail_continue: true
+      allow_recursive: false
+      strategies:
+        - !Promiscuous
+          max_channels: 10
+          network_quality_threshold: 0.5
+          new_channel_stake: "1000000 HOPR"
+          minimum_node_balance: "10000000 HOPR"
+          min_network_size_samples: 20
+          enforce_max_channels: true
+          minimum_peer_version: ">=2.0.0"
+        - !AutoFunding
+          funding_amount: "1000000 HOPR"
+          min_stake_threshold: "100000 HOPR"
+        - !Aggregating
+          aggregation_threshold: 330
+          unrealized_balance_ratio: 0.95
+          aggregation_timeout: 60
+          aggregate_on_channel_close: true
+        - !AutoRedeeming
+          redeem_only_aggregated: true
+          on_close_redeem_single_tickets_value_min: "2000000000000000000 HOPR"
+        - !ClosureFinalizer
+          max_closure_overdue: 3600
